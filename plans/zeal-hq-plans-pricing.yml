@@ -1,0 +1,151 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Zeal
+providerId: zeal-hq
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Payroll
+- Embedded Finance
+- Fintech
+- Plans
+description: >-
+  Zeal is sold as an embedded payroll platform and prices via a sales-quoted
+  contract rather than a public self-serve price list. The typical structure
+  is a per-employee-per-month (PEPM) and per-contractor-per-month fee for
+  active paid workers, layered on top of a platform / partner fee, with
+  add-ons for features such as instant pay, paycards, and tax filing. Test
+  Mode is free (no money moves and no per-worker charges); production usage -
+  paid employees and disbursed wages - incurs charges. Exact rates are
+  negotiated with Zeal sales.
+notes: >-
+  Zeal does not publish a public per-seat price. The PEPM / per-contractor and
+  platform-fee structure below is representative of embedded payroll pricing
+  and must be reconciled against a signed Zeal order form.
+sources:
+- https://www.zeal.com
+- https://docs.zeal.com/reference/introduction
+- https://www.zeal.com/pricing
+plans:
+- id: zeal-hq-test
+  name: Test Mode
+  type: free
+  description: >-
+    Full API access against simulated data. No payroll is run and no money is
+    moved, so no per-worker or wage charges are incurred.
+  entries:
+  - label: Test Mode Access
+    name: test_mode
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: usa
+    unit: 1
+    price: $0 (no money moved)
+    userMultiplied: false
+  elements:
+  - name: Companies
+  - name: Employees
+  - name: Contractors
+  - name: Employee Check (Payroll Run)
+  - name: Contractor Payments
+  - name: Webhooks
+- id: zeal-hq-embedded
+  name: Embedded Payroll (Production)
+  type: usage
+  description: >-
+    Production embedded payroll priced by active paid workers per month plus a
+    platform fee. Rates are sales-quoted per contract.
+  entries:
+  - label: Per Employee Per Month (PEPM)
+    name: pepm_employee
+    type: usage
+    metric: employees
+    limit: -1
+    timeFrame: month
+    geo: usa
+    unit: 1
+    price: sales-quoted PEPM per active paid W-2 employee
+    userMultiplied: true
+  - label: Per Contractor Per Month
+    name: per_contractor
+    type: usage
+    metric: contractors
+    limit: -1
+    timeFrame: month
+    geo: usa
+    unit: 1
+    price: sales-quoted per active paid 1099 contractor
+    userMultiplied: true
+  - label: Platform / Partner Fee
+    name: platform_fee
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: usa
+    unit: 1
+    price: sales-quoted platform fee
+    userMultiplied: false
+  elements:
+  - name: Payroll Runs
+  - name: Contractor Payments
+  - name: Tax Calculation and Filing
+  - name: Reports
+  - name: Funding and Journal
+- id: zeal-hq-addons
+  name: Add-ons
+  type: usage
+  description: >-
+    Optional features layered on the embedded plan, priced per use or per
+    enrolled worker. Availability and rates are sales-quoted.
+  entries:
+  - label: Instant Pay
+    name: instant_pay
+    type: usage
+    metric: transfers
+    limit: -1
+    timeFrame: month
+    geo: usa
+    unit: 1
+    price: sales-quoted per instant-pay transfer / enrolled worker
+    userMultiplied: false
+  - label: Paycards
+    name: paycards
+    type: usage
+    metric: cards
+    limit: -1
+    timeFrame: month
+    geo: usa
+    unit: 1
+    price: sales-quoted per enrolled paycard
+    userMultiplied: false
+  elements:
+  - name: Instant Pay Wallet
+  - name: Paycard Enrollment
+- id: zeal-hq-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, dedicated support, and negotiated terms for
+    high-volume embedded payroll partners. Contact Zeal sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: usa
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

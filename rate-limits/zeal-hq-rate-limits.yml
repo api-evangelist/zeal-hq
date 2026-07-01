@@ -1,0 +1,58 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Zeal
+providerId: zeal-hq
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Payroll
+- Embedded Finance
+- Fintech
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Zeal API applies per-account request rate limits and returns HTTP 429
+  when a client exceeds them. Zeal documents rate limiting alongside
+  idempotency and pagination in its API reference; specific numeric
+  thresholds are not published and are not reconciled in this artifact. Bulk
+  operations (for example bulk employee checks) and asynchronous report jobs
+  are provided so consumers can avoid hitting per-request limits on
+  high-volume payroll operations.
+notes: >-
+  Verify concrete per-endpoint limits and window sizes against the Zeal
+  rate-limiting reference and with your Zeal solutions contact during
+  reconciliation.
+sources:
+- https://docs.zeal.com/reference/rate-limiting
+- https://docs.zeal.com/reference/idempotency
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Account
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request rate limit; exact threshold and window not published.
+- name: Bulk Employee Checks
+  scope: account
+  metric: checks
+  limit: batched per bulk request
+  notes: Use POST /employeeCheck/bulk to submit many checks in one call and reduce request volume.
+- name: Report Jobs
+  scope: account
+  metric: jobs
+  limit: asynchronous
+  notes: Reports run as async jobs; poll job status rather than re-requesting synchronously.
+policies:
+- name: Idempotency
+  description: Supply an idempotency key on create operations so retries after 429 or network errors do not duplicate payroll actions.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on 429 responses and honor any Retry-After header.
+- name: Test Mode First
+  description: Exercise high-volume flows against a test API key before running them in production to avoid throttling live payroll runs.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

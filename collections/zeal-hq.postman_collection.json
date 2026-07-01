@@ -1,0 +1,341 @@
+{
+  "info": {
+    "name": "Zeal API",
+    "description": "Representative Postman collection for the Zeal embedded payroll API. Set the baseUrl variable to https://api.zeal.com and bearerToken to your Zeal test or live API key. Requests are scoped by companyID.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.zeal.com" },
+    { "key": "bearerToken", "value": "" },
+    { "key": "companyID", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "Create a company",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"business_name\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"email\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/companies", "host": [ "{{baseUrl}}" ], "path": [ "companies" ] }
+          }
+        },
+        {
+          "name": "Get company information",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "companies" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        },
+        {
+          "name": "Update company information",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"payroll_schedule\": \"biweekly\",\n  \"payroll_firstCheckDate\": \"2026-07-15\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/companies", "host": [ "{{baseUrl}}" ], "path": [ "companies" ] }
+          }
+        },
+        {
+          "name": "Create company bank account",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"institution_name\": \"<string>\",\n  \"account_number\": \"<string>\",\n  \"routing_number\": \"<string>\",\n  \"account_type\": \"checking\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/bankAccount", "host": [ "{{baseUrl}}" ], "path": [ "bankAccount" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employees",
+      "item": [
+        {
+          "name": "Create an employee",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"default_pay_rate\": 25\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/employees", "host": [ "{{baseUrl}}" ], "path": [ "employees" ] }
+          }
+        },
+        {
+          "name": "Get employees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/employees?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "employees" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        },
+        {
+          "name": "Update employee information",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"id\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/employees", "host": [ "{{baseUrl}}" ], "path": [ "employees" ] }
+          }
+        },
+        {
+          "name": "Set employee tax parameters",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"employeeID\": \"<string>\",\n  \"parameters\": {}\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/taxes/employee/setup", "host": [ "{{baseUrl}}" ], "path": [ "taxes", "employee", "setup" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contractors",
+      "item": [
+        {
+          "name": "Create a contractor",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"type\": \"individual\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/contractors", "host": [ "{{baseUrl}}" ], "path": [ "contractors" ] }
+          }
+        },
+        {
+          "name": "Get contractors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contractors?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "contractors" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        },
+        {
+          "name": "Update contractor information",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"id\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/contractors", "host": [ "{{baseUrl}}" ], "path": [ "contractors" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Employee Check",
+      "item": [
+        {
+          "name": "Create an employee check",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"employeeID\": \"<string>\",\n  \"reportingPeriodID\": \"<string>\",\n  \"shifts\": [\n    { \"time\": \"2026-07-01T09:00:00Z\", \"hourly_wage\": 25, \"hours\": 8, \"wage_type\": \"hourly\" }\n  ]\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/employeeCheck", "host": [ "{{baseUrl}}" ], "path": [ "employeeCheck" ] }
+          }
+        },
+        {
+          "name": "Create bulk employee checks",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"checks\": []\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/employeeCheck/bulk", "host": [ "{{baseUrl}}" ], "path": [ "employeeCheck", "bulk" ] }
+          }
+        },
+        {
+          "name": "Get employee checks by employee",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/employeeCheck?companyID={{companyID}}&employeeID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "employeeCheck" ], "query": [ { "key": "companyID", "value": "{{companyID}}" }, { "key": "employeeID", "value": "<string>" } ] }
+          }
+        },
+        {
+          "name": "Download paystub PDF",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Accept", "value": "application/pdf" } ],
+            "url": { "raw": "{{baseUrl}}/paystub?companyID={{companyID}}&employeeCheckID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "paystub" ], "query": [ { "key": "companyID", "value": "{{companyID}}" }, { "key": "employeeCheckID", "value": "<string>" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contractor Payments",
+      "item": [
+        {
+          "name": "Create a contractor payment",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"contractorID\": \"<string>\",\n  \"amount\": 500,\n  \"disbursement_method\": \"direct_deposit\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/contractorPayments", "host": [ "{{baseUrl}}" ], "path": [ "contractorPayments" ] }
+          }
+        },
+        {
+          "name": "Get contractor payments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contractorPayments?companyID={{companyID}}&contractorID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "contractorPayments" ], "query": [ { "key": "companyID", "value": "{{companyID}}" }, { "key": "contractorID", "value": "<string>" } ] }
+          }
+        },
+        {
+          "name": "Trigger disbursement",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"paymentIDs\": []\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/contractorPayments/disburse", "host": [ "{{baseUrl}}" ], "path": [ "contractorPayments", "disburse" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pay Schedules",
+      "item": [
+        {
+          "name": "Get all reporting periods",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/reportingPeriods?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "reportingPeriods" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        },
+        {
+          "name": "Get upcoming regular payroll",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/reportingPeriods/upcoming?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "reportingPeriods", "upcoming" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        },
+        {
+          "name": "Get next available check date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/checkDate?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "checkDate" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Onboarding",
+      "item": [
+        {
+          "name": "Get company onboarding link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/companies/onboard?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "companies", "onboard" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        },
+        {
+          "name": "Generate employee onboarding link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/employees/onboarding?companyID={{companyID}}&employeeID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "employees", "onboarding" ], "query": [ { "key": "companyID", "value": "{{companyID}}" }, { "key": "employeeID", "value": "<string>" } ] }
+          }
+        },
+        {
+          "name": "Generate contractor onboarding link",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/contractors/onboard?companyID={{companyID}}&contractorID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "contractors", "onboard" ], "query": [ { "key": "companyID", "value": "{{companyID}}" }, { "key": "contractorID", "value": "<string>" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tax",
+      "item": [
+        {
+          "name": "Get employee tax parameter definitions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/taxes/employee/definitions?companyID={{companyID}}&employeeID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "taxes", "employee", "definitions" ], "query": [ { "key": "companyID", "value": "{{companyID}}" }, { "key": "employeeID", "value": "<string>" } ] }
+          }
+        },
+        {
+          "name": "Resolve taxable location",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"address\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/taxes/location", "host": [ "{{baseUrl}}" ], "path": [ "taxes", "location" ] }
+          }
+        },
+        {
+          "name": "Get minimum wage rules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/minimumWage?jurisdiction=<string>", "host": [ "{{baseUrl}}" ], "path": [ "minimumWage" ], "query": [ { "key": "jurisdiction", "value": "<string>" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Create payroll journal report",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\",\n  \"start_date\": \"2026-01-01\",\n  \"end_date\": \"2026-06-30\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/reports/payrollJournal", "host": [ "{{baseUrl}}" ], "path": [ "reports", "payrollJournal" ] }
+          }
+        },
+        {
+          "name": "Create cash requirements report",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"companyID\": \"{{companyID}}\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/reports/cashRequirements", "host": [ "{{baseUrl}}" ], "path": [ "reports", "cashRequirements" ] }
+          }
+        },
+        {
+          "name": "Get report job status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/reports/status?jobID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "reports", "status" ], "query": [ { "key": "jobID", "value": "<string>" } ] }
+          }
+        },
+        {
+          "name": "Retrieve report download",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/reports/download?jobID=<string>", "host": [ "{{baseUrl}}" ], "path": [ "reports", "download" ], "query": [ { "key": "jobID", "value": "<string>" } ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Funding",
+      "item": [
+        {
+          "name": "Get reserve balance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/reserve/balance?companyID={{companyID}}", "host": [ "{{baseUrl}}" ], "path": [ "reserve", "balance" ], "query": [ { "key": "companyID", "value": "{{companyID}}" } ] }
+          }
+        }
+      ]
+    }
+  ]
+}

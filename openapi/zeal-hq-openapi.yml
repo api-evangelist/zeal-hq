@@ -1,0 +1,991 @@
+openapi: 3.0.3
+info:
+  title: Zeal API
+  description: >-
+    Zeal is an embedded payroll-as-a-service platform. This representative
+    OpenAPI describes the core surfaces of the Zeal API used to build payroll
+    products: onboarding companies, employees, and contractors; running pay
+    runs (employee checks) and contractor payments; managing pay schedules,
+    tax parameters, reports, funding, and webhooks. All requests are
+    authenticated with a Bearer API key and scoped by a companyID. Use a test
+    API key against Test Mode (no money moves) before switching to a live key.
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+  - url: https://api.zeal.com
+    description: Zeal API (test or live selected by API key)
+security:
+  - bearerAuth: []
+tags:
+  - name: Companies
+  - name: Employees
+  - name: Contractors
+  - name: Employee Check
+  - name: Contractor Payments
+  - name: Pay Schedules
+  - name: Onboarding
+  - name: Tax
+  - name: Reports
+  - name: Funding
+paths:
+  /companies:
+    post:
+      operationId: createCompany
+      tags: [Companies]
+      summary: Create a company
+      description: Create a new employer company on the platform.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCompanyRequest'
+      responses:
+        '200':
+          description: The created company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+    get:
+      operationId: getCompanyInformation
+      tags: [Companies]
+      summary: Get company information
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The company record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+    put:
+      operationId: updateCompanyInformation
+      tags: [Companies]
+      summary: Update company information
+      description: >-
+        Update company profile fields such as payroll_firstCheckDate,
+        payroll_schedule, and payroll_firstPayPeriodID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompanyRequest'
+      responses:
+        '200':
+          description: The updated company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+  /companies/onboard:
+    get:
+      operationId: getCompanyOnboardingLink
+      tags: [Companies, Onboarding]
+      summary: Get a company onboarding link
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: A hosted onboarding link for the company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardLink'
+  /bankAccount:
+    post:
+      operationId: createCompanyBankAccount
+      tags: [Companies]
+      summary: Create a company bank account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountRequest'
+      responses:
+        '200':
+          description: The created bank account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccount'
+  /employees:
+    post:
+      operationId: createEmployee
+      tags: [Employees]
+      summary: Create an employee
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmployeeRequest'
+      responses:
+        '200':
+          description: The created employee.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+    get:
+      operationId: getEmployees
+      tags: [Employees]
+      summary: Get employees
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: A list of employees.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  employees:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Employee'
+    put:
+      operationId: updateEmployeeInformation
+      tags: [Employees]
+      summary: Update employee information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Employee'
+      responses:
+        '200':
+          description: The updated employee.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Employee'
+  /employees/onboarding:
+    get:
+      operationId: generateEmployeeOnboardingLink
+      tags: [Employees, Onboarding]
+      summary: Generate an employee onboarding link
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: employeeID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A hosted onboarding link for the employee.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardLink'
+  /taxes/employee/setup:
+    post:
+      operationId: setEmployeeTaxParameters
+      tags: [Employees, Tax]
+      summary: Set employee tax parameters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeTaxParameters'
+      responses:
+        '200':
+          description: The saved tax parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeTaxParameters'
+  /taxes/employee/definitions:
+    get:
+      operationId: getEmployeeTaxParameterDefinitions
+      tags: [Employees, Tax]
+      summary: Get employee tax parameter definitions
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: employeeID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The tax parameter definitions required for the employee.
+          content:
+            application/json:
+              schema:
+                type: object
+  /contractors:
+    post:
+      operationId: createContractor
+      tags: [Contractors]
+      summary: Create a contractor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContractorRequest'
+      responses:
+        '200':
+          description: The created contractor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contractor'
+    get:
+      operationId: getContractors
+      tags: [Contractors]
+      summary: Get contractors
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: A list of contractors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  contractors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Contractor'
+    put:
+      operationId: updateContractorInformation
+      tags: [Contractors]
+      summary: Update contractor information
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contractor'
+      responses:
+        '200':
+          description: The updated contractor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contractor'
+  /contractors/onboard:
+    get:
+      operationId: getContractorOnboardingLink
+      tags: [Contractors, Onboarding]
+      summary: Generate a contractor onboarding link
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: contractorID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A hosted onboarding link for the contractor.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardLink'
+  /employeeCheck:
+    post:
+      operationId: createEmployeeCheck
+      tags: [Employee Check]
+      summary: Create an employee check
+      description: >-
+        Create a paycheck (employee check) for a reporting period. Zeal
+        calculates gross-to-net, employee and employer taxes, and deductions.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEmployeeCheckRequest'
+      responses:
+        '200':
+          description: The created employee check(s).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EmployeeCheck'
+    get:
+      operationId: getEmployeeChecksByEmployee
+      tags: [Employee Check]
+      summary: Get employee checks by employee
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: employeeID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of employee checks.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EmployeeCheck'
+    put:
+      operationId: updateEmployeeCheck
+      tags: [Employee Check]
+      summary: Update an employee check
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeCheck'
+      responses:
+        '200':
+          description: The updated employee check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeCheck'
+    delete:
+      operationId: deleteEmployeeCheck
+      tags: [Employee Check]
+      summary: Delete an employee check
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: employeeCheckID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                type: object
+  /employeeCheck/bulk:
+    post:
+      operationId: createBulkEmployeeChecks
+      tags: [Employee Check]
+      summary: Create bulk employee checks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyID:
+                  type: string
+                checks:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CreateEmployeeCheckRequest'
+      responses:
+        '200':
+          description: The created employee checks.
+          content:
+            application/json:
+              schema:
+                type: object
+  /paystub:
+    get:
+      operationId: downloadPaystubPdf
+      tags: [Employee Check]
+      summary: Download a paystub PDF
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: employeeCheckID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The paystub PDF.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /contractorPayments:
+    post:
+      operationId: createContractorPayment
+      tags: [Contractor Payments]
+      summary: Create a contractor payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContractorPaymentRequest'
+      responses:
+        '200':
+          description: The created contractor payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractorPayment'
+    get:
+      operationId: getContractorPayments
+      tags: [Contractor Payments]
+      summary: Get contractor payments
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: contractorID
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of contractor payments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContractorPayment'
+    put:
+      operationId: updateContractorPayment
+      tags: [Contractor Payments]
+      summary: Update a contractor payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractorPayment'
+      responses:
+        '200':
+          description: The updated contractor payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractorPayment'
+    delete:
+      operationId: deleteContractorPayment
+      tags: [Contractor Payments]
+      summary: Delete a contractor payment
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+        - name: paymentID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                type: object
+  /contractorPayments/disburse:
+    post:
+      operationId: triggerContractorDisbursement
+      tags: [Contractor Payments]
+      summary: Trigger a contractor payment disbursement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyID:
+                  type: string
+                paymentIDs:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Disbursement result.
+          content:
+            application/json:
+              schema:
+                type: object
+  /reportingPeriods:
+    get:
+      operationId: getAllReportingPeriods
+      tags: [Pay Schedules]
+      summary: Get all reporting periods
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The reporting periods for the company's pay schedule.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reportingPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReportingPeriod'
+  /reportingPeriods/upcoming:
+    get:
+      operationId: getUpcomingRegularPayroll
+      tags: [Pay Schedules]
+      summary: Get upcoming regular payroll
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The next upcoming regular payroll period.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportingPeriod'
+  /checkDate:
+    get:
+      operationId: getNextAvailableCheckDate
+      tags: [Pay Schedules]
+      summary: Get the next available check / pay date
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The next available check date.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkDate:
+                    type: string
+                    format: date
+  /taxes/location:
+    post:
+      operationId: resolveTaxableLocation
+      tags: [Tax]
+      summary: Resolve a taxable location
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyID:
+                  type: string
+                address:
+                  type: string
+      responses:
+        '200':
+          description: The resolved taxable location.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxableLocation'
+  /minimumWage:
+    get:
+      operationId: getMinimumWageRules
+      tags: [Tax]
+      summary: Get minimum wage rules
+      parameters:
+        - name: jurisdiction
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The applicable minimum wage rules.
+          content:
+            application/json:
+              schema:
+                type: object
+  /reports/payrollJournal:
+    post:
+      operationId: createPayrollJournalReport
+      tags: [Reports]
+      summary: Create a payroll journal report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '200':
+          description: A report job reference.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/cashRequirements:
+    post:
+      operationId: createCashRequirementsReport
+      tags: [Reports]
+      summary: Create a cash requirements report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '200':
+          description: A report job reference.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/status:
+    get:
+      operationId: getReportJobStatus
+      tags: [Reports]
+      summary: Get report job status
+      parameters:
+        - name: jobID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The report job status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/download:
+    get:
+      operationId: retrieveReportDownload
+      tags: [Reports]
+      summary: Retrieve a finished report download
+      parameters:
+        - name: jobID
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The finished report.
+          content:
+            application/json:
+              schema:
+                type: object
+  /reserve/balance:
+    get:
+      operationId: getReserveBalance
+      tags: [Funding]
+      summary: Get the reserve / provider balance
+      parameters:
+        - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The reserve balance funding payroll.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                  currency:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Provide your Zeal API key as a Bearer token:
+        `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode
+        and a live key for production. Requests are additionally scoped by a
+        companyID passed in the body or query.
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
+  schemas:
+    CreateCompanyRequest:
+      type: object
+      required: [business_name, ein]
+      properties:
+        business_name:
+          type: string
+        ein:
+          type: string
+        email:
+          type: string
+    UpdateCompanyRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        payroll_firstCheckDate:
+          type: string
+          format: date
+        payroll_schedule:
+          type: string
+          enum: [weekly, biweekly, semimonthly, monthly]
+        payroll_firstPayPeriodID:
+          type: string
+    Company:
+      type: object
+      properties:
+        companyID:
+          type: string
+        business_name:
+          type: string
+        ein:
+          type: string
+        status:
+          type: string
+          enum: [needs_onboarding, onboarding, onboarded]
+    OnboardLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        expiration:
+          type: string
+          format: date-time
+    BankAccountRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        institution_name:
+          type: string
+        account_number:
+          type: string
+        routing_number:
+          type: string
+        account_type:
+          type: string
+          enum: [checking, savings]
+    BankAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_name:
+          type: string
+        account_type:
+          type: string
+        status:
+          type: string
+    CreateEmployeeRequest:
+      type: object
+      required: [companyID, first_name, last_name]
+      properties:
+        companyID:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        default_pay_rate:
+          type: number
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        companyID:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        onboarded:
+          type: boolean
+    EmployeeTaxParameters:
+      type: object
+      properties:
+        companyID:
+          type: string
+        employeeID:
+          type: string
+        parameters:
+          type: object
+    CreateContractorRequest:
+      type: object
+      required: [companyID, type]
+      properties:
+        companyID:
+          type: string
+        type:
+          type: string
+          enum: [individual, business]
+        first_name:
+          type: string
+        last_name:
+          type: string
+        business_name:
+          type: string
+        email:
+          type: string
+    Contractor:
+      type: object
+      properties:
+        id:
+          type: string
+        companyID:
+          type: string
+        type:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        business_name:
+          type: string
+        onboarded:
+          type: boolean
+    CreateEmployeeCheckRequest:
+      type: object
+      required: [companyID, employeeID, reportingPeriodID]
+      properties:
+        companyID:
+          type: string
+        employeeID:
+          type: string
+        reportingPeriodID:
+          type: string
+        check_date:
+          type: string
+          format: date
+        shifts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shift'
+    Shift:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+        hourly_wage:
+          type: number
+        hours:
+          type: number
+        wage_type:
+          type: string
+    EmployeeCheck:
+      type: object
+      properties:
+        employeeCheckID:
+          type: string
+        employeeID:
+          type: string
+        reportingPeriodID:
+          type: string
+        check_date:
+          type: string
+          format: date
+        gross_pay:
+          type: number
+        net_pay:
+          type: number
+        status:
+          type: string
+          enum: [pending, pre-processed, processed, failed]
+    CreateContractorPaymentRequest:
+      type: object
+      required: [companyID, contractorID, amount]
+      properties:
+        companyID:
+          type: string
+        contractorID:
+          type: string
+        amount:
+          type: number
+        disbursement_method:
+          type: string
+          enum: [direct_deposit, prepaid, off_platform]
+    ContractorPayment:
+      type: object
+      properties:
+        paymentID:
+          type: string
+        contractorID:
+          type: string
+        amount:
+          type: number
+        status:
+          type: string
+          enum: [pending, pre-processed, processed, failed]
+    ReportingPeriod:
+      type: object
+      properties:
+        id:
+          type: string
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+        check_date:
+          type: string
+          format: date
+    TaxableLocation:
+      type: object
+      properties:
+        id:
+          type: string
+        jurisdiction:
+          type: string
+        state:
+          type: string
+    ReportRequest:
+      type: object
+      required: [companyID]
+      properties:
+        companyID:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+    ReportJob:
+      type: object
+      properties:
+        jobID:
+          type: string
+        status:
+          type: string
+          enum: [queued, processing, complete, failed]
+        download_url:
+          type: string
+          format: uri

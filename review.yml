@@ -1,0 +1,75 @@
+aid: zeal-hq
+name: Zeal
+review:
+  question: Does Zeal expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    Zeal's asynchronous / event surface is delivered as HTTP webhooks
+    (server-to-server POST callbacks) documented under Webhook Events, not as
+    a WebSocket stream and not as HTTP Server-Sent Events. No AsyncAPI
+    document was authored: webhooks are point-to-point HTTP callbacks the
+    consumer receives, and Zeal does not publish a documented streaming or
+    bidirectional channel to model.
+findings:
+  summary: |
+    Zeal does not publish a documented public WebSocket API. The Zeal API is a
+    REST/HTTPS interface under https://api.zeal.com, authenticated with a
+    Bearer API key and scoped by companyID. Its asynchronous surface is
+    webhooks - Zeal POSTs event payloads (company, employee, contractor, bank
+    account, employee-check, employer-check-processed, and related events) to
+    a consumer-registered endpoint. There is no documented realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint, and no
+    Server-Sent Events surface.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.zeal.com
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Zeal POSTs event payloads to a consumer-registered HTTPS callback URL. One-way server-to-server callbacks, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Zeal's API reference as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://api.zeal.com/companies
+    - GET    https://api.zeal.com/companies
+    - PUT    https://api.zeal.com/companies
+    - POST   https://api.zeal.com/employees
+    - GET    https://api.zeal.com/employees
+    - POST   https://api.zeal.com/contractors
+    - GET    https://api.zeal.com/contractors
+    - POST   https://api.zeal.com/employeeCheck
+    - GET    https://api.zeal.com/employeeCheck
+    - POST   https://api.zeal.com/employeeCheck/bulk
+    - POST   https://api.zeal.com/contractorPayments
+    - GET    https://api.zeal.com/contractorPayments
+    - GET    https://api.zeal.com/reportingPeriods
+    - POST   https://api.zeal.com/taxes/location
+    - POST   https://api.zeal.com/reports/payrollJournal
+    - GET    https://api.zeal.com/reports/status
+    - GET    https://api.zeal.com/reserve/balance
+sources:
+  - url: https://docs.zeal.com/reference/introduction
+    type: APIReference
+    note: States Bearer API key auth and companyID scoping over an HTTPS REST API; no WebSocket mentioned.
+  - url: https://docs.zeal.com/reference/webhook-events
+    type: Documentation
+    note: Documents the webhook event catalog delivered as HTTP callbacks, not WebSocket or SSE.
+  - url: https://docs.zeal.com/reference/rate-limiting
+    type: Documentation
+    note: REST rate limiting with HTTP 429; consistent with a request/response REST API.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE surface exists. Zeal's only asynchronous surface is
+    HTTP webhooks, which are point-to-point server-to-server callbacks rather
+    than a streaming channel, so no AsyncAPI document was authored. The
+    webhook surface is represented in apis.yml as the Zeal Webhooks and
+    Events API entry pointing at the documented webhook event catalog.

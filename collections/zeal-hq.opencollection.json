@@ -1,0 +1,424 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Create a company", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/companies",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a new employer company on the platform."
+        },
+        {
+          "info": { "name": "Get company information", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/companies?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "Retrieve the company record."
+        },
+        {
+          "info": { "name": "Update company information", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zeal.com/companies",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Update company profile fields such as payroll_schedule and payroll_firstCheckDate."
+        },
+        {
+          "info": { "name": "Create company bank account", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/bankAccount",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a company bank account for funding payroll."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Create an employee", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/employees",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a W-2 employee."
+        },
+        {
+          "info": { "name": "Get employees", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employees?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "List employees for a company."
+        },
+        {
+          "info": { "name": "Update employee information", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zeal.com/employees",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Update an employee record."
+        },
+        {
+          "info": { "name": "Set employee tax parameters", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/taxes/employee/setup",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Set an employee's tax parameters and withholding."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contractors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Create a contractor", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/contractors",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a 1099 contractor."
+        },
+        {
+          "info": { "name": "Get contractors", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/contractors?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "List contractors for a company."
+        },
+        {
+          "info": { "name": "Update contractor information", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zeal.com/contractors",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Update a contractor record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Employee Check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Create an employee check", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/employeeCheck",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a paycheck; Zeal calculates gross-to-net and taxes."
+        },
+        {
+          "info": { "name": "Create bulk employee checks", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/employeeCheck/bulk",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create many employee checks in a single request."
+        },
+        {
+          "info": { "name": "Get employee checks by employee", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employeeCheck?companyID=:companyID&employeeID=:employeeID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." },
+              { "name": "employeeID", "value": "", "type": "query", "description": "The employee ID." }
+            ]
+          },
+          "docs": "List an employee's checks."
+        },
+        {
+          "info": { "name": "Download paystub PDF", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/paystub?companyID=:companyID&employeeCheckID=:employeeCheckID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." },
+              { "name": "employeeCheckID", "value": "", "type": "query", "description": "The employee check ID." }
+            ]
+          },
+          "docs": "Download the paystub PDF for an employee check."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Contractor Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Create a contractor payment", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/contractorPayments",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create a payment to a contractor."
+        },
+        {
+          "info": { "name": "Get contractor payments", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/contractorPayments?companyID=:companyID&contractorID=:contractorID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." },
+              { "name": "contractorID", "value": "", "type": "query", "description": "The contractor ID." }
+            ]
+          },
+          "docs": "List contractor payments."
+        },
+        {
+          "info": { "name": "Trigger disbursement", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/contractorPayments/disburse",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Trigger disbursement of contractor payments to worker bank accounts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pay Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Get all reporting periods", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reportingPeriods?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "List reporting periods for the company's pay schedule."
+        },
+        {
+          "info": { "name": "Get upcoming regular payroll", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reportingPeriods/upcoming?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "Get the next upcoming regular payroll period."
+        },
+        {
+          "info": { "name": "Get next available check date", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/checkDate?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "Get the next available check / pay date."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Onboarding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Get company onboarding link", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/companies/onboard?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "Generate a hosted onboarding link for the company."
+        },
+        {
+          "info": { "name": "Generate employee onboarding link", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employees/onboarding?companyID=:companyID&employeeID=:employeeID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." },
+              { "name": "employeeID", "value": "", "type": "query", "description": "The employee ID." }
+            ]
+          },
+          "docs": "Generate a hosted onboarding link for an employee."
+        },
+        {
+          "info": { "name": "Generate contractor onboarding link", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/contractors/onboard?companyID=:companyID&contractorID=:contractorID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." },
+              { "name": "contractorID", "value": "", "type": "query", "description": "The contractor ID." }
+            ]
+          },
+          "docs": "Generate a hosted onboarding link for a contractor."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tax",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Get employee tax parameter definitions", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/taxes/employee/definitions?companyID=:companyID&employeeID=:employeeID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." },
+              { "name": "employeeID", "value": "", "type": "query", "description": "The employee ID." }
+            ]
+          },
+          "docs": "Get the tax parameter definitions required for an employee."
+        },
+        {
+          "info": { "name": "Resolve taxable location", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/taxes/location",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Resolve a work address to a taxable location."
+        },
+        {
+          "info": { "name": "Get minimum wage rules", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/minimumWage?jurisdiction=:jurisdiction",
+            "params": [
+              { "name": "jurisdiction", "value": "", "type": "query", "description": "The jurisdiction to look up." }
+            ]
+          },
+          "docs": "Look up applicable minimum wage rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Create payroll journal report", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/reports/payrollJournal",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create an asynchronous payroll journal report."
+        },
+        {
+          "info": { "name": "Create cash requirements report", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/reports/cashRequirements",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Create an asynchronous cash requirements report."
+        },
+        {
+          "info": { "name": "Get report job status", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reports/status?jobID=:jobID",
+            "params": [
+              { "name": "jobID", "value": "", "type": "query", "description": "The report job ID." }
+            ]
+          },
+          "docs": "Poll the status of a report job."
+        },
+        {
+          "info": { "name": "Retrieve report download", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reports/download?jobID=:jobID",
+            "params": [
+              { "name": "jobID", "value": "", "type": "query", "description": "The report job ID." }
+            ]
+          },
+          "docs": "Download a finished report."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Funding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Get reserve balance", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reserve/balance?companyID=:companyID",
+            "params": [
+              { "name": "companyID", "value": "", "type": "query", "description": "The Zeal companyID." }
+            ]
+          },
+          "docs": "Get the reserve / provider balance funding payroll."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

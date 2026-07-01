@@ -1,0 +1,110 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Zeal
+providerId: zeal-hq
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Payroll
+- Embedded Finance
+- Fintech
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Zeal embedded payroll spend. Zeal bills a per-employee-per-
+  month (PEPM) and per-contractor-per-month fee for active paid workers on top
+  of a platform / partner fee, with add-ons such as instant pay and paycards.
+  Distinct from the platform subscription cost, the actual payroll dollars -
+  disbursed wages plus employer taxes - flow through Zeal's funding reserve and
+  should be tracked as a separate cost dimension. Test Mode moves no money and
+  incurs no per-worker charges.
+notes: >-
+  Zeal pricing is sales-quoted and not public; reconcile PEPM, per-contractor,
+  and platform-fee amounts against a signed order form. Track disbursed wages
+  and employer tax liability separately from Zeal's own platform fees.
+sources:
+- https://www.zeal.com
+- https://docs.zeal.com/reference/introduction
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Zeal
+serviceCategory: Payroll and Human Resources
+billingModel:
+  pricingCategory: Subscription-and-Usage
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Zeal Embedded Payroll
+  ServiceCategory: Payroll and Human Resources
+  ProviderName: Zeal
+  PublisherName: Zeal
+  InvoiceIssuerName: Zeal
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-and-Usage
+meters:
+- name: active_paid_employees
+  description: W-2 employees paid in the month, billed PEPM.
+  unit: employees
+  aggregation: count
+  dimensions:
+  - company
+  - month
+- name: active_paid_contractors
+  description: 1099 contractors paid in the month, billed per contractor.
+  unit: contractors
+  aggregation: count
+  dimensions:
+  - company
+  - month
+- name: platform_fee
+  description: Flat monthly platform / partner fee.
+  unit: fee
+  aggregation: sum
+  dimensions:
+  - partner
+  - month
+- name: instant_pay_transfers
+  description: Instant pay transfers, an optional add-on billed per transfer or enrolled worker.
+  unit: transfers
+  aggregation: sum
+  dimensions:
+  - company
+  - worker
+- name: paycards
+  description: Enrolled paycards, an optional add-on.
+  unit: cards
+  aggregation: count
+  dimensions:
+  - company
+- name: disbursed_wages
+  description: Gross wages and employer taxes moved through Zeal's funding reserve (payroll dollars, not platform fees).
+  unit: usd
+  aggregation: sum
+  dimensions:
+  - company
+  - reporting_period
+principles:
+- name: Visibility
+  description: Separate Zeal platform fees (PEPM, per-contractor, platform fee) from the payroll dollars moved through the funding reserve; pull the payroll journal and cash requirements reports per period.
+- name: Allocation
+  description: Tag spend by company and partner; map PEPM and per-contractor fees to the customer accounts that generate them.
+- name: Optimization
+  description: Run in Test Mode while integrating to avoid live charges; batch checks and reconcile inactive workers so you are not billed PEPM for workers who were not paid.
+- name: Accountability
+  description: Review the reserve balance and per-period cash requirements before each pay run; assign an owner for payroll funding and monthly Zeal invoice reconciliation.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
