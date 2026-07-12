@@ -269,6 +269,10 @@ apis:
     account, employee-check and employer-check processed events - delivered as
     webhooks so consumers can react to payroll lifecycle changes.
 common:
+- type: DomainSecurity
+  url: security/zeal-hq-domain-security.yml
+- type: Authentication
+  url: authentication/zeal-hq-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/zeal-holdings
 - type: Website
@@ -281,6 +285,8 @@ common:
   url: rate-limits/zeal-hq-rate-limits.yml
 - type: FinOps
   url: finops/zeal-hq-finops.yml
+- url: https://www.zeal.com/blog/rss.xml
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
