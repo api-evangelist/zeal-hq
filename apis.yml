@@ -269,6 +269,8 @@ apis:
     account, employee-check and employer-check processed events - delivered as
     webhooks so consumers can react to payroll lifecycle changes.
 common:
+- type: AgenticAccess
+  url: agentic-access/zeal-hq-agentic-access.yml
 - type: DomainSecurity
   url: security/zeal-hq-domain-security.yml
 - type: Authentication
