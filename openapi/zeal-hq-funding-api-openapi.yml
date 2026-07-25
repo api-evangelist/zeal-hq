@@ -1,0 +1,52 @@
+openapi: 3.0.3
+info:
+  title: Zeal Companies Funding API
+  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+- url: https://api.zeal.com
+  description: Zeal API (test or live selected by API key)
+security:
+- bearerAuth: []
+tags:
+- name: Funding
+paths:
+  /reserve/balance:
+    get:
+      operationId: getReserveBalance
+      tags:
+      - Funding
+      summary: Get the reserve / provider balance
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The reserve balance funding payroll.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: number
+                  currency:
+                    type: string
+components:
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Zeal API key as a Bearer token: `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode and a live key for production. Requests are additionally scoped by a companyID passed in the body or query.'

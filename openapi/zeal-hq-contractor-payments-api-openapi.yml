@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Zeal Companies Contractor Payments API
+  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+- url: https://api.zeal.com
+  description: Zeal API (test or live selected by API key)
+security:
+- bearerAuth: []
+tags:
+- name: Contractor Payments
+paths:
+  /contractorPayments:
+    post:
+      operationId: createContractorPayment
+      tags:
+      - Contractor Payments
+      summary: Create a contractor payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateContractorPaymentRequest'
+      responses:
+        '200':
+          description: The created contractor payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractorPayment'
+    get:
+      operationId: getContractorPayments
+      tags:
+      - Contractor Payments
+      summary: Get contractor payments
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      - name: contractorID
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of contractor payments.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  payments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ContractorPayment'
+    put:
+      operationId: updateContractorPayment
+      tags:
+      - Contractor Payments
+      summary: Update a contractor payment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractorPayment'
+      responses:
+        '200':
+          description: The updated contractor payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractorPayment'
+    delete:
+      operationId: deleteContractorPayment
+      tags:
+      - Contractor Payments
+      summary: Delete a contractor payment
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      - name: paymentID
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion result.
+          content:
+            application/json:
+              schema:
+                type: object
+  /contractorPayments/disburse:
+    post:
+      operationId: triggerContractorDisbursement
+      tags:
+      - Contractor Payments
+      summary: Trigger a contractor payment disbursement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyID:
+                  type: string
+                paymentIDs:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Disbursement result.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    ContractorPayment:
+      type: object
+      properties:
+        paymentID:
+          type: string
+        contractorID:
+          type: string
+        amount:
+          type: number
+        status:
+          type: string
+          enum:
+          - pending
+          - pre-processed
+          - processed
+          - failed
+    CreateContractorPaymentRequest:
+      type: object
+      required:
+      - companyID
+      - contractorID
+      - amount
+      properties:
+        companyID:
+          type: string
+        contractorID:
+          type: string
+        amount:
+          type: number
+        disbursement_method:
+          type: string
+          enum:
+          - direct_deposit
+          - prepaid
+          - off_platform
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Zeal API key as a Bearer token: `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode and a live key for production. Requests are additionally scoped by a companyID passed in the body or query.'

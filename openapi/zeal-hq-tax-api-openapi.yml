@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Zeal Companies Tax API
+  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+- url: https://api.zeal.com
+  description: Zeal API (test or live selected by API key)
+security:
+- bearerAuth: []
+tags:
+- name: Tax
+paths:
+  /taxes/employee/setup:
+    post:
+      operationId: setEmployeeTaxParameters
+      tags:
+      - Tax
+      summary: Set employee tax parameters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmployeeTaxParameters'
+      responses:
+        '200':
+          description: The saved tax parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmployeeTaxParameters'
+  /taxes/employee/definitions:
+    get:
+      operationId: getEmployeeTaxParameterDefinitions
+      tags:
+      - Tax
+      summary: Get employee tax parameter definitions
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      - name: employeeID
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The tax parameter definitions required for the employee.
+          content:
+            application/json:
+              schema:
+                type: object
+  /taxes/location:
+    post:
+      operationId: resolveTaxableLocation
+      tags:
+      - Tax
+      summary: Resolve a taxable location
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                companyID:
+                  type: string
+                address:
+                  type: string
+      responses:
+        '200':
+          description: The resolved taxable location.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxableLocation'
+  /minimumWage:
+    get:
+      operationId: getMinimumWageRules
+      tags:
+      - Tax
+      summary: Get minimum wage rules
+      parameters:
+      - name: jurisdiction
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The applicable minimum wage rules.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    TaxableLocation:
+      type: object
+      properties:
+        id:
+          type: string
+        jurisdiction:
+          type: string
+        state:
+          type: string
+    EmployeeTaxParameters:
+      type: object
+      properties:
+        companyID:
+          type: string
+        employeeID:
+          type: string
+        parameters:
+          type: object
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Zeal API key as a Bearer token: `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode and a live key for production. Requests are additionally scoped by a companyID passed in the body or query.'

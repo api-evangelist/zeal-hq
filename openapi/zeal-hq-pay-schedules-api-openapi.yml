@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: Zeal Companies Pay Schedules API
+  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+- url: https://api.zeal.com
+  description: Zeal API (test or live selected by API key)
+security:
+- bearerAuth: []
+tags:
+- name: Pay Schedules
+paths:
+  /reportingPeriods:
+    get:
+      operationId: getAllReportingPeriods
+      tags:
+      - Pay Schedules
+      summary: Get all reporting periods
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The reporting periods for the company's pay schedule.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reportingPeriods:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReportingPeriod'
+  /reportingPeriods/upcoming:
+    get:
+      operationId: getUpcomingRegularPayroll
+      tags:
+      - Pay Schedules
+      summary: Get upcoming regular payroll
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The next upcoming regular payroll period.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportingPeriod'
+  /checkDate:
+    get:
+      operationId: getNextAvailableCheckDate
+      tags:
+      - Pay Schedules
+      summary: Get the next available check / pay date
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The next available check date.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  checkDate:
+                    type: string
+                    format: date
+components:
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
+  schemas:
+    ReportingPeriod:
+      type: object
+      properties:
+        id:
+          type: string
+        start:
+          type: string
+          format: date
+        end:
+          type: string
+          format: date
+        check_date:
+          type: string
+          format: date
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Zeal API key as a Bearer token: `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode and a live key for production. Requests are additionally scoped by a companyID passed in the body or query.'

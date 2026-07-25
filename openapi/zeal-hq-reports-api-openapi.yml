@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Zeal Companies Reports API
+  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+- url: https://api.zeal.com
+  description: Zeal API (test or live selected by API key)
+security:
+- bearerAuth: []
+tags:
+- name: Reports
+paths:
+  /reports/payrollJournal:
+    post:
+      operationId: createPayrollJournalReport
+      tags:
+      - Reports
+      summary: Create a payroll journal report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '200':
+          description: A report job reference.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/cashRequirements:
+    post:
+      operationId: createCashRequirementsReport
+      tags:
+      - Reports
+      summary: Create a cash requirements report
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+      responses:
+        '200':
+          description: A report job reference.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/status:
+    get:
+      operationId: getReportJobStatus
+      tags:
+      - Reports
+      summary: Get report job status
+      parameters:
+      - name: jobID
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The report job status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportJob'
+  /reports/download:
+    get:
+      operationId: retrieveReportDownload
+      tags:
+      - Reports
+      summary: Retrieve a finished report download
+      parameters:
+      - name: jobID
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The finished report.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    ReportRequest:
+      type: object
+      required:
+      - companyID
+      properties:
+        companyID:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+    ReportJob:
+      type: object
+      properties:
+        jobID:
+          type: string
+        status:
+          type: string
+          enum:
+          - queued
+          - processing
+          - complete
+          - failed
+        download_url:
+          type: string
+          format: uri
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Zeal API key as a Bearer token: `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode and a live key for production. Requests are additionally scoped by a companyID passed in the body or query.'

@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: Zeal Companies API
+  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  termsOfService: https://www.zeal.com/terms
+  contact:
+    name: Zeal Support
+    url: https://docs.zeal.com
+    email: support@zeal.com
+  version: '1.0'
+servers:
+- url: https://api.zeal.com
+  description: Zeal API (test or live selected by API key)
+security:
+- bearerAuth: []
+tags:
+- name: Companies
+paths:
+  /companies:
+    post:
+      operationId: createCompany
+      tags:
+      - Companies
+      summary: Create a company
+      description: Create a new employer company on the platform.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCompanyRequest'
+      responses:
+        '200':
+          description: The created company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+    get:
+      operationId: getCompanyInformation
+      tags:
+      - Companies
+      summary: Get company information
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: The company record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+    put:
+      operationId: updateCompanyInformation
+      tags:
+      - Companies
+      summary: Update company information
+      description: Update company profile fields such as payroll_firstCheckDate, payroll_schedule, and payroll_firstPayPeriodID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompanyRequest'
+      responses:
+        '200':
+          description: The updated company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+  /companies/onboard:
+    get:
+      operationId: getCompanyOnboardingLink
+      tags:
+      - Companies
+      summary: Get a company onboarding link
+      parameters:
+      - $ref: '#/components/parameters/companyID'
+      responses:
+        '200':
+          description: A hosted onboarding link for the company.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnboardLink'
+  /bankAccount:
+    post:
+      operationId: createCompanyBankAccount
+      tags:
+      - Companies
+      summary: Create a company bank account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankAccountRequest'
+      responses:
+        '200':
+          description: The created bank account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccount'
+components:
+  schemas:
+    Company:
+      type: object
+      properties:
+        companyID:
+          type: string
+        business_name:
+          type: string
+        ein:
+          type: string
+        status:
+          type: string
+          enum:
+          - needs_onboarding
+          - onboarding
+          - onboarded
+    UpdateCompanyRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        payroll_firstCheckDate:
+          type: string
+          format: date
+        payroll_schedule:
+          type: string
+          enum:
+          - weekly
+          - biweekly
+          - semimonthly
+          - monthly
+        payroll_firstPayPeriodID:
+          type: string
+    BankAccountRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        institution_name:
+          type: string
+        account_number:
+          type: string
+        routing_number:
+          type: string
+        account_type:
+          type: string
+          enum:
+          - checking
+          - savings
+    CreateCompanyRequest:
+      type: object
+      required:
+      - business_name
+      - ein
+      properties:
+        business_name:
+          type: string
+        ein:
+          type: string
+        email:
+          type: string
+    BankAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_name:
+          type: string
+        account_type:
+          type: string
+        status:
+          type: string
+    OnboardLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        expiration:
+          type: string
+          format: date-time
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Zeal API key as a Bearer token: `Authorization: Bearer <YOUR_API_KEY>`. Use a test key for Test Mode and a live key for production. Requests are additionally scoped by a companyID passed in the body or query.'
