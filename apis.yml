@@ -7,7 +7,20 @@ description: Zeal is an embedded, payroll-as-a-service platform. Its API lets so
   1099 contractors, running pay runs, disbursing pay, and handling tax calculation,
   filing, and compliance across all US jurisdictions - without becoming a payroll
   company themselves.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zeal-hq.png
 tags:
 - Payroll
 - Embedded Finance
@@ -21,253 +34,504 @@ specificationVersion: '0.19'
 apis:
 - aid: zeal-hq:zeal-hq-companies-api
   name: Zeal Companies API
-  tags:
-  - Companies
-  - Onboarding
-  - Bank Accounts
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Companies API from Zeal — 3 operation(s) for companies.
   humanURL: https://docs.zeal.com/reference/create-company
   baseURL: https://api.zeal.com
-  properties:
-  - url: https://docs.zeal.com/docs/what-is-zeal
-    type: Documentation
-  - url: https://docs.zeal.com/reference/create-company
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Create and manage employer companies on the platform - company profile,
-    onboarding links and status, authorization documents, and company bank accounts
-    with micro-deposit verification.
-- aid: zeal-hq:zeal-hq-employees-api
-  name: Zeal Employees API
   tags:
-  - Employees
-  - W-2
-  - Workers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/create-employee
-  baseURL: https://api.zeal.com
+  - Companies
   properties:
-  - url: https://docs.zeal.com/docs/employee-onboarding-guide
-    type: Documentation
-  - url: https://docs.zeal.com/reference/create-employee
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Create, retrieve, and update W-2 employees, upload government IDs, check
-    onboarding requirements, and manage employee tax parameters and withholding.
-- aid: zeal-hq:zeal-hq-contractors-api
-  name: Zeal Contractors API
-  tags:
-  - Contractors
-  - 1099
-  - Workers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/create-contractor
-  baseURL: https://api.zeal.com
-  properties:
-  - url: https://docs.zeal.com/docs/contractor-onboarding-guide
-    type: Documentation
-  - url: https://docs.zeal.com/reference/create-contractor
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Create, retrieve, and update 1099 contractors, upload government IDs,
-    generate contractor onboarding links, and set onboarded status.
-- aid: zeal-hq:zeal-hq-employee-check-api
-  name: Zeal Employee Check (Payroll Run) API
-  tags:
-  - Payroll
-  - Paychecks
-  - Pay Runs
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/create-employee-check
-  baseURL: https://api.zeal.com
-  properties:
-  - url: https://docs.zeal.com/docs/regular-payroll
-    type: Documentation
-  - url: https://docs.zeal.com/reference/create-employee-check
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Create single and bulk employee checks (paychecks), attach and edit
-    shifts, preview payroll, download paystub PDFs, and run pay runs that calculate
-    gross-to-net and taxes.
+  - type: OpenAPI
+    url: openapi/zeal-hq-companies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
 - aid: zeal-hq:zeal-hq-contractor-payments-api
   name: Zeal Contractor Payments API
+  description: The Contractor Payments API from Zeal — 2 operation(s) for contractor payments.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
   tags:
   - Contractor Payments
-  - Disbursement
-  - 1099
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/create-contractor-payment
-  baseURL: https://api.zeal.com
   properties:
-  - url: https://docs.zeal.com/docs/contractor-onboarding-guide
-    type: Documentation
-  - url: https://docs.zeal.com/reference/create-contractor-payment
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Create, retrieve, update, and delete contractor payments and trigger
-    their disbursement to worker bank accounts.
-- aid: zeal-hq:zeal-hq-pay-schedules-api
-  name: Zeal Pay Schedules API
+  - type: OpenAPI
+    url: openapi/zeal-hq-contractor-payments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-contractors-api
+  name: Zeal Contractors API
+  description: The Contractors API from Zeal — 2 operation(s) for contractors.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
   tags:
-  - Pay Schedules
-  - Reporting Periods
-  - Check Dates
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/get-all-reporting-periods
-  baseURL: https://api.zeal.com
+  - Contractors
   properties:
-  - url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
-    type: Documentation
-  - url: https://docs.zeal.com/reference/get-all-reporting-periods
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Retrieve reporting periods, upcoming regular payroll, and the next
-    available check and pay dates that drive the company's pay frequency and schedule.
-- aid: zeal-hq:zeal-hq-onboarding-api
-  name: Zeal Worker Onboarding API
+  - type: OpenAPI
+    url: openapi/zeal-hq-contractors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-employee-check-api
+  name: Zeal Employee Check API
+  description: The Employee Check API from Zeal — 3 operation(s) for employee check.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
   tags:
-  - Onboarding
-  - Hosted Flows
-  - Compliance Paperwork
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/generate-employee-onboarding-link
-  baseURL: https://api.zeal.com
+  - Employee Check
   properties:
-  - url: https://docs.zeal.com/docs/employee-onboarding-guide
-    type: Documentation
-  - url: https://docs.zeal.com/reference/generate-employee-onboarding-link
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Generate hosted onboarding links for employees and contractors -
-    account setup, bank account collection, ID upload, W-4, I-9, and custom
-    paperwork - so workers can complete compliant onboarding themselves.
-- aid: zeal-hq:zeal-hq-tax-api
-  name: Zeal Tax and Compliance API
+  - type: OpenAPI
+    url: openapi/zeal-hq-employee-check-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-employees-api
+  name: Zeal Employees API
+  description: The Employees API from Zeal — 4 operation(s) for employees.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
   tags:
-  - Tax
-  - Compliance
-  - Minimum Wage
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
-  baseURL: https://api.zeal.com
+  - Employees
   properties:
-  - url: https://docs.zeal.com/reference/introduction
-    type: Documentation
-  - url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Set and retrieve employee tax parameters and definitions, resolve
-    taxable work locations, and look up minimum wage rules for automated,
-    jurisdiction-aware payroll tax handling.
-- aid: zeal-hq:zeal-hq-reports-api
-  name: Zeal Reports API
-  tags:
-  - Reports
-  - Payroll Journal
-  - Analytics
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/create-payroll-journal-report
-  baseURL: https://api.zeal.com
-  properties:
-  - url: https://docs.zeal.com/reference/introduction
-    type: Documentation
-  - url: https://docs.zeal.com/reference/create-payroll-journal-report
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Generate asynchronous payroll reports - payroll journal, cash
-    requirements, labor allocation, payment/worker summaries, quarter- and
-    year-to-date - then poll job status and download the finished report.
+  - type: OpenAPI
+    url: openapi/zeal-hq-employees-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
 - aid: zeal-hq:zeal-hq-funding-api
-  name: Zeal Funding and Journal API
+  name: Zeal Funding API
+  description: The Funding API from Zeal — 1 operation(s) for funding.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
   tags:
   - Funding
-  - Journal
-  - Accounting
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/get-provider-balance
-  baseURL: https://api.zeal.com
   properties:
-  - url: https://docs.zeal.com/reference/introduction
-    type: Documentation
-  - url: https://docs.zeal.com/reference/get-provider-balance
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Inspect the reserve/provider balance funding payroll and build a
-    payroll journal via the custom payroll journal report for accounting
-    reconciliation.
-- aid: zeal-hq:zeal-hq-webhooks-api
-  name: Zeal Webhooks and Events API
+  - type: OpenAPI
+    url: openapi/zeal-hq-funding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-onboarding-api
+  name: Zeal Onboarding API
+  description: The Onboarding API from Zeal — 3 operation(s) for onboarding.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
   tags:
-  - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.zeal.com/reference/webhook-events
-  baseURL: https://api.zeal.com
+  - Onboarding
   properties:
-  - url: https://docs.zeal.com/reference/webhook-events
-    type: Documentation
-  - url: https://docs.zeal.com/reference/webhook-events
-    type: APIReference
-  - url: openapi/zeal-hq-openapi.yml
-    type: OpenAPI
-  - url: collections/zeal-hq.postman_collection.json
-    type: PostmanCollection
-  - url: collections/zeal-hq.opencollection.json
-    type: OpenCollection
-  description: Subscribe to platform events - company, employee, contractor, bank
-    account, employee-check and employer-check processed events - delivered as
-    webhooks so consumers can react to payroll lifecycle changes.
+  - type: OpenAPI
+    url: openapi/zeal-hq-onboarding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-pay-schedules-api
+  name: Zeal Pay Schedules API
+  description: The Pay Schedules API from Zeal — 3 operation(s) for pay schedules.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
+  tags:
+  - Pay Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/zeal-hq-pay-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-reports-api
+  name: Zeal Reports API
+  description: The Reports API from Zeal — 4 operation(s) for reports.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/zeal-hq-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
+- aid: zeal-hq:zeal-hq-tax-api
+  name: Zeal Tax API
+  description: The Tax API from Zeal — 4 operation(s) for tax.
+  humanURL: https://docs.zeal.com/reference/create-company
+  baseURL: https://api.zeal.com
+  tags:
+  - Tax
+  properties:
+  - type: OpenAPI
+    url: openapi/zeal-hq-tax-api-openapi.yml
+  - type: Documentation
+    url: https://docs.zeal.com/docs/what-is-zeal
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-company
+  - type: PostmanCollection
+    url: collections/zeal-hq.postman_collection.json
+  - type: OpenCollection
+    url: collections/zeal-hq.opencollection.json
+  - type: Documentation
+    url: https://docs.zeal.com/docs/employee-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee
+  - type: Documentation
+    url: https://docs.zeal.com/docs/contractor-onboarding-guide
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor
+  - type: Documentation
+    url: https://docs.zeal.com/docs/regular-payroll
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-employee-check
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-contractor-payment
+  - type: Documentation
+    url: https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-all-reporting-periods
+  - type: APIReference
+    url: https://docs.zeal.com/reference/generate-employee-onboarding-link
+  - type: Documentation
+    url: https://docs.zeal.com/reference/introduction
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-employee-tax-parameter-definitions
+  - type: APIReference
+    url: https://docs.zeal.com/reference/create-payroll-journal-report
+  - type: APIReference
+    url: https://docs.zeal.com/reference/get-provider-balance
+  - type: Documentation
+    url: https://docs.zeal.com/reference/webhook-events
+  - type: APIReference
+    url: https://docs.zeal.com/reference/webhook-events
 common:
 - type: AgenticAccess
   url: agentic-access/zeal-hq-agentic-access.yml
