@@ -1,0 +1,32 @@
+{
+  "provider": "zeal-hq",
+  "sources": [
+    "zeal-hq-companies-api-openapi.yml",
+    "zeal-hq-contractor-payments-api-openapi.yml",
+    "zeal-hq-contractors-api-openapi.yml",
+    "zeal-hq-employee-check-api-openapi.yml",
+    "zeal-hq-employees-api-openapi.yml",
+    "zeal-hq-funding-api-openapi.yml",
+    "zeal-hq-onboarding-api-openapi.yml",
+    "zeal-hq-pay-schedules-api-openapi.yml",
+    "zeal-hq-reports-api-openapi.yml",
+    "zeal-hq-tax-api-openapi.yml"
+  ],
+  "outputs": [
+    "zeal-hq-companies-api-openapi.yml",
+    "zeal-hq-contractor-payments-api-openapi.yml",
+    "zeal-hq-contractors-api-openapi.yml",
+    "zeal-hq-employee-check-api-openapi.yml",
+    "zeal-hq-employees-api-openapi.yml",
+    "zeal-hq-funding-api-openapi.yml",
+    "zeal-hq-onboarding-api-openapi.yml",
+    "zeal-hq-pay-schedules-api-openapi.yml",
+    "zeal-hq-reports-api-openapi.yml",
+    "zeal-hq-tax-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
