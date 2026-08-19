@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal Companies Reports API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a payroll journal report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/reports/payrollJournal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payroll journal report"
+        },
+        {
+          "info": {
+            "name": "Create a cash requirements report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/reports/cashRequirements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a cash requirements report"
+        },
+        {
+          "info": {
+            "name": "Get report job status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reports/status",
+            "params": [
+              {
+                "name": "jobID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get report job status"
+        },
+        {
+          "info": {
+            "name": "Retrieve a finished report download",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/reports/download",
+            "params": [
+              {
+                "name": "jobID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a finished report download"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

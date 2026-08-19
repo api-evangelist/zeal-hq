@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal Companies Tax API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tax",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set employee tax parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/taxes/employee/setup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set employee tax parameters"
+        },
+        {
+          "info": {
+            "name": "Get employee tax parameter definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/taxes/employee/definitions",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employee tax parameter definitions"
+        },
+        {
+          "info": {
+            "name": "Resolve a taxable location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/taxes/location",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Resolve a taxable location"
+        },
+        {
+          "info": {
+            "name": "Get minimum wage rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/minimumWage",
+            "params": [
+              {
+                "name": "jurisdiction",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get minimum wage rules"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal Companies Onboarding API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Onboarding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a company onboarding link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/companies/onboard",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              }
+            ]
+          },
+          "docs": "Get a company onboarding link"
+        },
+        {
+          "info": {
+            "name": "Generate an employee onboarding link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employees/onboarding",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generate an employee onboarding link"
+        },
+        {
+          "info": {
+            "name": "Generate a contractor onboarding link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/contractors/onboard",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "contractorID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generate a contractor onboarding link"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

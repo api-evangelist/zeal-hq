@@ -1,0 +1,304 @@
+{
+  "item": [
+    {
+      "id": "bc1e12a7-07df-46a5-a85c-57f76f347878",
+      "name": "Pay Schedules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ab6003ad-27f6-4dbf-87e7-d6f2e77c3ab6",
+          "name": "Get all reporting periods",
+          "request": {
+            "name": "Get all reporting periods",
+            "description": {},
+            "url": {
+              "path": [
+                "reportingPeriods"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8f3debe-28a1-4a33-95e8-6ddd5b7ab5ef",
+              "name": "The reporting periods for the company's pay schedule.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportingPeriods"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportingPeriods\": [\n    {\n      \"id\": \"string\",\n      \"start\": \"1949-12-18\",\n      \"end\": \"1983-01-09\",\n      \"check_date\": \"1970-10-10\"\n    },\n    {\n      \"id\": \"string\",\n      \"start\": \"1962-10-25\",\n      \"end\": \"1987-10-02\",\n      \"check_date\": \"1985-08-31\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ee0dff1-14d4-4ec0-b64a-0f06c51dd9f8",
+          "name": "Get upcoming regular payroll",
+          "request": {
+            "name": "Get upcoming regular payroll",
+            "description": {},
+            "url": {
+              "path": [
+                "reportingPeriods",
+                "upcoming"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d082ec8-2254-410e-a1cc-1e85d3c34d10",
+              "name": "The next upcoming regular payroll period.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reportingPeriods",
+                    "upcoming"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"start\": \"2021-05-14\",\n  \"end\": \"1982-06-14\",\n  \"check_date\": \"1992-01-18\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acbb6baa-c0aa-470b-bbd6-aa12d18d4df2",
+          "name": "Get the next available check / pay date",
+          "request": {
+            "name": "Get the next available check / pay date",
+            "description": {},
+            "url": {
+              "path": [
+                "checkDate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "436122bd-c58f-4aab-900c-b03e4f667a46",
+              "name": "The next available check date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "checkDate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checkDate\": \"2006-07-23\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "02bcf9c6-ac8c-4245-bbf7-644bb85c26b7",
+    "name": "Zeal Companies Pay Schedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.\n\nContact Support:\n Name: Zeal Support\n Email: support@zeal.com",
+      "type": "text/plain"
+    }
+  }
+}

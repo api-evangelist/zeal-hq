@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal Companies Contractor Payments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contractor Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get contractor payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/contractorPayments",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "contractorID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get contractor payments"
+        },
+        {
+          "info": {
+            "name": "Create a contractor payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/contractorPayments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a contractor payment"
+        },
+        {
+          "info": {
+            "name": "Update a contractor payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zeal.com/contractorPayments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a contractor payment"
+        },
+        {
+          "info": {
+            "name": "Delete a contractor payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.zeal.com/contractorPayments",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "paymentID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete a contractor payment"
+        },
+        {
+          "info": {
+            "name": "Trigger a contractor payment disbursement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/contractorPayments/disburse",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a contractor payment disbursement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

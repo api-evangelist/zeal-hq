@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal Companies Employee Check API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employee Check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get employee checks by employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employeeCheck",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employee checks by employee"
+        },
+        {
+          "info": {
+            "name": "Create an employee check",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/employeeCheck",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a paycheck (employee check) for a reporting period. Zeal calculates gross-to-net, employee and employer taxes, and deductions."
+        },
+        {
+          "info": {
+            "name": "Update an employee check",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zeal.com/employeeCheck",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an employee check"
+        },
+        {
+          "info": {
+            "name": "Delete an employee check",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.zeal.com/employeeCheck",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeCheckID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete an employee check"
+        },
+        {
+          "info": {
+            "name": "Create bulk employee checks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/employeeCheck/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create bulk employee checks"
+        },
+        {
+          "info": {
+            "name": "Download a paystub PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/paystub",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeCheckID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Download a paystub PDF"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

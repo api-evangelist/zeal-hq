@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zeal Companies Employees API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Employees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get employees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employees",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              }
+            ]
+          },
+          "docs": "Get employees"
+        },
+        {
+          "info": {
+            "name": "Create an employee",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/employees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an employee"
+        },
+        {
+          "info": {
+            "name": "Update employee information",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.zeal.com/employees",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update employee information"
+        },
+        {
+          "info": {
+            "name": "Generate an employee onboarding link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/employees/onboarding",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generate an employee onboarding link"
+        },
+        {
+          "info": {
+            "name": "Set employee tax parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zeal.com/taxes/employee/setup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set employee tax parameters"
+        },
+        {
+          "info": {
+            "name": "Get employee tax parameter definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zeal.com/taxes/employee/definitions",
+            "params": [
+              {
+                "name": "companyID",
+                "value": "",
+                "type": "query",
+                "description": "The Zeal companyID identifying the employer account."
+              },
+              {
+                "name": "employeeID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get employee tax parameter definitions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

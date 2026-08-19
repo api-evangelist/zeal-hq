@@ -1,0 +1,419 @@
+{
+  "item": [
+    {
+      "id": "98ef5f72-e646-4b82-a2b3-7f61f3f69c27",
+      "name": "Contractors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d90e84b0-7bbb-47f2-b43a-11660e50471b",
+          "name": "Create a contractor",
+          "request": {
+            "name": "Create a contractor",
+            "description": {},
+            "url": {
+              "path": [
+                "contractors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d1cb40a-6cdb-47ee-843d-d3b52189e34b",
+              "name": "The created contractor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"email\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"companyID\": \"string\",\n  \"type\": \"string\",\n  \"first_name\": \"string\",\n  \"last_name\": \"string\",\n  \"business_name\": \"string\",\n  \"onboarded\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e8e4423-9ab0-43dd-a9bc-0bac1436256d",
+          "name": "Get contractors",
+          "request": {
+            "name": "Get contractors",
+            "description": {},
+            "url": {
+              "path": [
+                "contractors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfbfc0be-ded6-442a-bb14-aa9db00eaabc",
+              "name": "A list of contractors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"contractors\": [\n    {\n      \"id\": \"string\",\n      \"companyID\": \"string\",\n      \"type\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"business_name\": \"string\",\n      \"onboarded\": false\n    },\n    {\n      \"id\": \"string\",\n      \"companyID\": \"string\",\n      \"type\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"business_name\": \"string\",\n      \"onboarded\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72869d81-13d0-4079-ad86-b59e6ca74a88",
+          "name": "Update contractor information",
+          "request": {
+            "name": "Update contractor information",
+            "description": {},
+            "url": {
+              "path": [
+                "contractors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"companyID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"onboarded\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc215f0b-a780-4b46-815c-2644f2ce8b71",
+              "name": "The updated contractor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"companyID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"onboarded\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<string>\",\n  \"companyID\": \"<string>\",\n  \"type\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"business_name\": \"<string>\",\n  \"onboarded\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "976ad8d4-6974-411e-9a0f-1c2632de795f",
+          "name": "Generate a contractor onboarding link",
+          "request": {
+            "name": "Generate a contractor onboarding link",
+            "description": {},
+            "url": {
+              "path": [
+                "contractors",
+                "onboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                },
+                {
+                  "disabled": false,
+                  "key": "contractorID",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26864262-21be-44fc-86e6-0989c4e26a01",
+              "name": "A hosted onboarding link for the contractor.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "contractors",
+                    "onboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "contractorID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"url\": \"https://xvYi.lfbzMnmy1FCy7hUZUPOyjAlLOmTzKlgQU,NLIX0o7.WShg0KHS+.FcxIJ5EJWv3GxCkPQCVWDOUCf7\",\n  \"expiration\": \"2007-10-12T00:02:20.886Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "45acbbcb-c9c9-412c-ac51-f4d823b68ffd",
+    "name": "Zeal Companies Contractors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.\n\nContact Support:\n Name: Zeal Support\n Email: support@zeal.com",
+      "type": "text/plain"
+    }
+  }
+}

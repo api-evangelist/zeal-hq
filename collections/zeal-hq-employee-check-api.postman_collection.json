@@ -1,0 +1,625 @@
+{
+  "item": [
+    {
+      "id": "83661918-6e98-41a2-9159-47f56f2b1853",
+      "name": "Employee Check",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0fe46a29-85ab-45d4-8d02-c5831ce16d5f",
+          "name": "Create an employee check",
+          "request": {
+            "name": "Create an employee check",
+            "description": {
+              "content": "Create a paycheck (employee check) for a reporting period. Zeal calculates gross-to-net, employee and employer taxes, and deductions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "employeeCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyID\": \"<string>\",\n  \"employeeID\": \"<string>\",\n  \"reportingPeriodID\": \"<string>\",\n  \"check_date\": \"<date>\",\n  \"shifts\": [\n    {\n      \"time\": \"<dateTime>\",\n      \"hourly_wage\": \"<number>\",\n      \"hours\": \"<number>\",\n      \"wage_type\": \"<string>\"\n    },\n    {\n      \"time\": \"<dateTime>\",\n      \"hourly_wage\": \"<number>\",\n      \"hours\": \"<number>\",\n      \"wage_type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f71c6006-08c4-49ac-9586-20bdc5b3c2bd",
+              "name": "The created employee check(s).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employeeCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyID\": \"<string>\",\n  \"employeeID\": \"<string>\",\n  \"reportingPeriodID\": \"<string>\",\n  \"check_date\": \"<date>\",\n  \"shifts\": [\n    {\n      \"time\": \"<dateTime>\",\n      \"hourly_wage\": \"<number>\",\n      \"hours\": \"<number>\",\n      \"wage_type\": \"<string>\"\n    },\n    {\n      \"time\": \"<dateTime>\",\n      \"hourly_wage\": \"<number>\",\n      \"hours\": \"<number>\",\n      \"wage_type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checks\": [\n    {\n      \"employeeCheckID\": \"string\",\n      \"employeeID\": \"string\",\n      \"reportingPeriodID\": \"string\",\n      \"check_date\": \"2025-06-27\",\n      \"gross_pay\": 3959.2712836109013,\n      \"net_pay\": 8409.615893565828,\n      \"status\": \"pre-processed\"\n    },\n    {\n      \"employeeCheckID\": \"string\",\n      \"employeeID\": \"string\",\n      \"reportingPeriodID\": \"string\",\n      \"check_date\": \"1987-04-26\",\n      \"gross_pay\": 1662.8980462655386,\n      \"net_pay\": 1293.1327701130313,\n      \"status\": \"pending\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21acaf9e-c101-4a19-b9bc-b56fd14ffa85",
+          "name": "Get employee checks by employee",
+          "request": {
+            "name": "Get employee checks by employee",
+            "description": {},
+            "url": {
+              "path": [
+                "employeeCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeID",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a664ac65-e411-473d-9219-411d4b4ac4ce",
+              "name": "A list of employee checks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employeeCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"checks\": [\n    {\n      \"employeeCheckID\": \"string\",\n      \"employeeID\": \"string\",\n      \"reportingPeriodID\": \"string\",\n      \"check_date\": \"2025-06-27\",\n      \"gross_pay\": 3959.2712836109013,\n      \"net_pay\": 8409.615893565828,\n      \"status\": \"pre-processed\"\n    },\n    {\n      \"employeeCheckID\": \"string\",\n      \"employeeID\": \"string\",\n      \"reportingPeriodID\": \"string\",\n      \"check_date\": \"1987-04-26\",\n      \"gross_pay\": 1662.8980462655386,\n      \"net_pay\": 1293.1327701130313,\n      \"status\": \"pending\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17f05bd7-e4e0-4a82-ac2d-f4110d2345d8",
+          "name": "Update an employee check",
+          "request": {
+            "name": "Update an employee check",
+            "description": {},
+            "url": {
+              "path": [
+                "employeeCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"employeeCheckID\": \"<string>\",\n  \"employeeID\": \"<string>\",\n  \"reportingPeriodID\": \"<string>\",\n  \"check_date\": \"<date>\",\n  \"gross_pay\": \"<number>\",\n  \"net_pay\": \"<number>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca289e4d-3982-4568-b75a-2065e77e478a",
+              "name": "The updated employee check.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employeeCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeCheckID\": \"<string>\",\n  \"employeeID\": \"<string>\",\n  \"reportingPeriodID\": \"<string>\",\n  \"check_date\": \"<date>\",\n  \"gross_pay\": \"<number>\",\n  \"net_pay\": \"<number>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"employeeCheckID\": \"<string>\",\n  \"employeeID\": \"<string>\",\n  \"reportingPeriodID\": \"<string>\",\n  \"check_date\": \"<date>\",\n  \"gross_pay\": \"<number>\",\n  \"net_pay\": \"<number>\",\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d34215c-8769-4cb7-8ac7-bad1623459ba",
+          "name": "Delete an employee check",
+          "request": {
+            "name": "Delete an employee check",
+            "description": {},
+            "url": {
+              "path": [
+                "employeeCheck"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeCheckID",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "db30bcb4-03e2-4b71-b871-b193e06a1e2a",
+              "name": "Deletion result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employeeCheck"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeCheckID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21c021b3-50b7-440c-abb8-600335a4d84b",
+          "name": "Create bulk employee checks",
+          "request": {
+            "name": "Create bulk employee checks",
+            "description": {},
+            "url": {
+              "path": [
+                "employeeCheck",
+                "bulk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyID\": \"<string>\",\n  \"checks\": [\n    {\n      \"companyID\": \"<string>\",\n      \"employeeID\": \"<string>\",\n      \"reportingPeriodID\": \"<string>\",\n      \"check_date\": \"<date>\",\n      \"shifts\": [\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        },\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"companyID\": \"<string>\",\n      \"employeeID\": \"<string>\",\n      \"reportingPeriodID\": \"<string>\",\n      \"check_date\": \"<date>\",\n      \"shifts\": [\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        },\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ead3ee5b-7238-48c6-a8c8-8b45c0f2f3a1",
+              "name": "The created employee checks.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "employeeCheck",
+                    "bulk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyID\": \"<string>\",\n  \"checks\": [\n    {\n      \"companyID\": \"<string>\",\n      \"employeeID\": \"<string>\",\n      \"reportingPeriodID\": \"<string>\",\n      \"check_date\": \"<date>\",\n      \"shifts\": [\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        },\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"companyID\": \"<string>\",\n      \"employeeID\": \"<string>\",\n      \"reportingPeriodID\": \"<string>\",\n      \"check_date\": \"<date>\",\n      \"shifts\": [\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        },\n        {\n          \"time\": \"<dateTime>\",\n          \"hourly_wage\": \"<number>\",\n          \"hours\": \"<number>\",\n          \"wage_type\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d6d4e97-5a5d-4f63-867d-6fc6921806cc",
+          "name": "Download a paystub PDF",
+          "request": {
+            "name": "Download a paystub PDF",
+            "description": {},
+            "url": {
+              "path": [
+                "paystub"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyID",
+                  "value": "<string>",
+                  "description": "(Required) The Zeal companyID identifying the employer account."
+                },
+                {
+                  "disabled": false,
+                  "key": "employeeCheckID",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8b59e22-0c19-420c-905d-4606aeae1cfe",
+              "name": "The paystub PDF.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "paystub"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyID",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "employeeCheckID",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zeal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c27d5970-8df7-409f-a752-5e400b9d67ff",
+    "name": "Zeal Companies Employee Check API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.\n\nContact Support:\n Name: Zeal Support\n Email: support@zeal.com",
+      "type": "text/plain"
+    }
+  }
+}
