@@ -7,6 +7,18 @@ description: Zeal is an embedded, payroll-as-a-service platform. Its API lets so
   1099 contractors, running pay runs, disbursing pay, and handling tax calculation,
   filing, and compliance across all US jurisdictions - without becoming a payroll
   company themselves.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
