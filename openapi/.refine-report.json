@@ -1,16 +1,7 @@
 {
   "provider": "zeal-hq",
   "sources": [
-    "zeal-hq-companies-api-openapi.yml",
-    "zeal-hq-contractor-payments-api-openapi.yml",
-    "zeal-hq-contractors-api-openapi.yml",
-    "zeal-hq-employee-check-api-openapi.yml",
-    "zeal-hq-employees-api-openapi.yml",
-    "zeal-hq-funding-api-openapi.yml",
-    "zeal-hq-onboarding-api-openapi.yml",
-    "zeal-hq-pay-schedules-api-openapi.yml",
-    "zeal-hq-reports-api-openapi.yml",
-    "zeal-hq-tax-api-openapi.yml"
+    "_original/zeal-hq-openapi.yml"
   ],
   "outputs": [
     "zeal-hq-companies-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zeal-hq-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "zeal-hq-companies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-contractor-payments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-contractors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-employee-check-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-employees-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-funding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-onboarding-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-pay-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zeal-hq-tax-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

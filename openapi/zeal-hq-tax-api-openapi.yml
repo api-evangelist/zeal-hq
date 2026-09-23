@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zeal Companies Tax API
-  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  title: Zeal Tax API
+  description: Zeal is an embedded payroll-as-a-service platform.
   termsOfService: https://www.zeal.com/terms
   contact:
     name: Zeal Support
@@ -100,15 +100,6 @@ paths:
                 type: object
 components:
   schemas:
-    TaxableLocation:
-      type: object
-      properties:
-        id:
-          type: string
-        jurisdiction:
-          type: string
-        state:
-          type: string
     EmployeeTaxParameters:
       type: object
       properties:
@@ -118,6 +109,15 @@ components:
           type: string
         parameters:
           type: object
+    TaxableLocation:
+      type: object
+      properties:
+        id:
+          type: string
+        jurisdiction:
+          type: string
+        state:
+          type: string
   parameters:
     companyID:
       name: companyID

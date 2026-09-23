@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zeal Companies Onboarding API
-  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  title: Zeal Onboarding API
+  description: Zeal is an embedded payroll-as-a-service platform.
   termsOfService: https://www.zeal.com/terms
   contact:
     name: Zeal Support
@@ -72,6 +72,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/OnboardLink'
 components:
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
   schemas:
     OnboardLink:
       type: object
@@ -82,14 +90,6 @@ components:
         expiration:
           type: string
           format: date-time
-  parameters:
-    companyID:
-      name: companyID
-      in: query
-      required: true
-      description: The Zeal companyID identifying the employer account.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

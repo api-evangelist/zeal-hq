@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zeal Companies Employees API
-  description: 'Zeal is an embedded payroll-as-a-service platform. This representative OpenAPI describes the core surfaces of the Zeal API used to build payroll products: onboarding companies, employees, and contractors; running pay runs (employee checks) and contractor payments; managing pay schedules, tax parameters, reports, funding, and webhooks. All requests are authenticated with a Bearer API key and scoped by a companyID. Use a test API key against Test Mode (no money moves) before switching to a live key.'
+  title: Zeal Employees API
+  description: Zeal is an embedded payroll-as-a-service platform.
   termsOfService: https://www.zeal.com/terms
   contact:
     name: Zeal Support
@@ -132,6 +132,14 @@ paths:
               schema:
                 type: object
 components:
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
   schemas:
     OnboardLink:
       type: object
@@ -142,6 +150,21 @@ components:
         expiration:
           type: string
           format: date-time
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        companyID:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        onboarded:
+          type: boolean
     CreateEmployeeRequest:
       type: object
       required:
@@ -159,21 +182,6 @@ components:
           type: string
         default_pay_rate:
           type: number
-    Employee:
-      type: object
-      properties:
-        id:
-          type: string
-        companyID:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-        onboarded:
-          type: boolean
     EmployeeTaxParameters:
       type: object
       properties:
@@ -183,14 +191,6 @@ components:
           type: string
         parameters:
           type: object
-  parameters:
-    companyID:
-      name: companyID
-      in: query
-      required: true
-      description: The Zeal companyID identifying the employer account.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
