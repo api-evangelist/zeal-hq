@@ -100,15 +100,6 @@ paths:
                 type: object
 components:
   schemas:
-    EmployeeTaxParameters:
-      type: object
-      properties:
-        companyID:
-          type: string
-        employeeID:
-          type: string
-        parameters:
-          type: object
     TaxableLocation:
       type: object
       properties:
@@ -118,6 +109,15 @@ components:
           type: string
         state:
           type: string
+    EmployeeTaxParameters:
+      type: object
+      properties:
+        companyID:
+          type: string
+        employeeID:
+          type: string
+        parameters:
+          type: object
   parameters:
     companyID:
       name: companyID

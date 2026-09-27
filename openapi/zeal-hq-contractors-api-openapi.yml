@@ -94,27 +94,6 @@ paths:
                 $ref: '#/components/schemas/OnboardLink'
 components:
   schemas:
-    CreateContractorRequest:
-      type: object
-      required:
-      - companyID
-      - type
-      properties:
-        companyID:
-          type: string
-        type:
-          type: string
-          enum:
-          - individual
-          - business
-        first_name:
-          type: string
-        last_name:
-          type: string
-        business_name:
-          type: string
-        email:
-          type: string
     Contractor:
       type: object
       properties:
@@ -141,6 +120,27 @@ components:
         expiration:
           type: string
           format: date-time
+    CreateContractorRequest:
+      type: object
+      required:
+      - companyID
+      - type
+      properties:
+        companyID:
+          type: string
+        type:
+          type: string
+          enum:
+          - individual
+          - business
+        first_name:
+          type: string
+        last_name:
+          type: string
+        business_name:
+          type: string
+        email:
+          type: string
   parameters:
     companyID:
       name: companyID

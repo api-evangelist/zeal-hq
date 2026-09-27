@@ -132,15 +132,24 @@ paths:
               schema:
                 type: object
 components:
-  parameters:
-    companyID:
-      name: companyID
-      in: query
-      required: true
-      description: The Zeal companyID identifying the employer account.
-      schema:
-        type: string
   schemas:
+    CreateEmployeeRequest:
+      type: object
+      required:
+      - companyID
+      - first_name
+      - last_name
+      properties:
+        companyID:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        default_pay_rate:
+          type: number
     OnboardLink:
       type: object
       properties:
@@ -165,23 +174,6 @@ components:
           type: string
         onboarded:
           type: boolean
-    CreateEmployeeRequest:
-      type: object
-      required:
-      - companyID
-      - first_name
-      - last_name
-      properties:
-        companyID:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-        default_pay_rate:
-          type: number
     EmployeeTaxParameters:
       type: object
       properties:
@@ -191,6 +183,14 @@ components:
           type: string
         parameters:
           type: object
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
