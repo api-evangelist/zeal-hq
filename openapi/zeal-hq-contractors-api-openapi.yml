@@ -111,15 +111,6 @@ components:
           type: string
         onboarded:
           type: boolean
-    OnboardLink:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        expiration:
-          type: string
-          format: date-time
     CreateContractorRequest:
       type: object
       required:
@@ -141,6 +132,15 @@ components:
           type: string
         email:
           type: string
+    OnboardLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        expiration:
+          type: string
+          format: date-time
   parameters:
     companyID:
       name: companyID

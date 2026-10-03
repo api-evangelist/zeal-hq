@@ -105,6 +105,65 @@ paths:
                 $ref: '#/components/schemas/BankAccount'
 components:
   schemas:
+    Company:
+      type: object
+      properties:
+        companyID:
+          type: string
+        business_name:
+          type: string
+        ein:
+          type: string
+        status:
+          type: string
+          enum:
+          - needs_onboarding
+          - onboarding
+          - onboarded
+    BankAccountRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        institution_name:
+          type: string
+        account_number:
+          type: string
+        routing_number:
+          type: string
+        account_type:
+          type: string
+          enum:
+          - checking
+          - savings
+    UpdateCompanyRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        payroll_firstCheckDate:
+          type: string
+          format: date
+        payroll_schedule:
+          type: string
+          enum:
+          - weekly
+          - biweekly
+          - semimonthly
+          - monthly
+        payroll_firstPayPeriodID:
+          type: string
+    BankAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_name:
+          type: string
+        account_type:
+          type: string
+        status:
+          type: string
     CreateCompanyRequest:
       type: object
       required:
@@ -126,65 +185,6 @@ components:
         expiration:
           type: string
           format: date-time
-    BankAccountRequest:
-      type: object
-      properties:
-        companyID:
-          type: string
-        institution_name:
-          type: string
-        account_number:
-          type: string
-        routing_number:
-          type: string
-        account_type:
-          type: string
-          enum:
-          - checking
-          - savings
-    BankAccount:
-      type: object
-      properties:
-        id:
-          type: string
-        institution_name:
-          type: string
-        account_type:
-          type: string
-        status:
-          type: string
-    Company:
-      type: object
-      properties:
-        companyID:
-          type: string
-        business_name:
-          type: string
-        ein:
-          type: string
-        status:
-          type: string
-          enum:
-          - needs_onboarding
-          - onboarding
-          - onboarded
-    UpdateCompanyRequest:
-      type: object
-      properties:
-        companyID:
-          type: string
-        payroll_firstCheckDate:
-          type: string
-          format: date
-        payroll_schedule:
-          type: string
-          enum:
-          - weekly
-          - biweekly
-          - semimonthly
-          - monthly
-        payroll_firstPayPeriodID:
-          type: string
   parameters:
     companyID:
       name: companyID

@@ -133,6 +133,30 @@ paths:
                 type: object
 components:
   schemas:
+    EmployeeTaxParameters:
+      type: object
+      properties:
+        companyID:
+          type: string
+        employeeID:
+          type: string
+        parameters:
+          type: object
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        companyID:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        onboarded:
+          type: boolean
     CreateEmployeeRequest:
       type: object
       required:
@@ -159,30 +183,6 @@ components:
         expiration:
           type: string
           format: date-time
-    Employee:
-      type: object
-      properties:
-        id:
-          type: string
-        companyID:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-        onboarded:
-          type: boolean
-    EmployeeTaxParameters:
-      type: object
-      properties:
-        companyID:
-          type: string
-        employeeID:
-          type: string
-        parameters:
-          type: object
   parameters:
     companyID:
       name: companyID

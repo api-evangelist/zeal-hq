@@ -72,6 +72,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/OnboardLink'
 components:
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
   schemas:
     OnboardLink:
       type: object
@@ -82,14 +90,6 @@ components:
         expiration:
           type: string
           format: date-time
-  parameters:
-    companyID:
-      name: companyID
-      in: query
-      required: true
-      description: The Zeal companyID identifying the employer account.
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
