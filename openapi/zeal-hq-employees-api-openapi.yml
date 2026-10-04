@@ -142,21 +142,6 @@ components:
           type: string
         parameters:
           type: object
-    Employee:
-      type: object
-      properties:
-        id:
-          type: string
-        companyID:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        email:
-          type: string
-        onboarded:
-          type: boolean
     CreateEmployeeRequest:
       type: object
       required:
@@ -183,6 +168,21 @@ components:
         expiration:
           type: string
           format: date-time
+    Employee:
+      type: object
+      properties:
+        id:
+          type: string
+        companyID:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        onboarded:
+          type: boolean
   parameters:
     companyID:
       name: companyID

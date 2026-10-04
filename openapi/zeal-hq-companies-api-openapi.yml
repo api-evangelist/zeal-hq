@@ -105,21 +105,18 @@ paths:
                 $ref: '#/components/schemas/BankAccount'
 components:
   schemas:
-    Company:
+    CreateCompanyRequest:
       type: object
+      required:
+      - business_name
+      - ein
       properties:
-        companyID:
-          type: string
         business_name:
           type: string
         ein:
           type: string
-        status:
+        email:
           type: string
-          enum:
-          - needs_onboarding
-          - onboarding
-          - onboarded
     BankAccountRequest:
       type: object
       properties:
@@ -153,6 +150,21 @@ components:
           - monthly
         payroll_firstPayPeriodID:
           type: string
+    Company:
+      type: object
+      properties:
+        companyID:
+          type: string
+        business_name:
+          type: string
+        ein:
+          type: string
+        status:
+          type: string
+          enum:
+          - needs_onboarding
+          - onboarding
+          - onboarded
     BankAccount:
       type: object
       properties:
@@ -163,18 +175,6 @@ components:
         account_type:
           type: string
         status:
-          type: string
-    CreateCompanyRequest:
-      type: object
-      required:
-      - business_name
-      - ein
-      properties:
-        business_name:
-          type: string
-        ein:
-          type: string
-        email:
           type: string
     OnboardLink:
       type: object

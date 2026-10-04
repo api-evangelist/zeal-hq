@@ -150,14 +150,6 @@ paths:
                 type: string
                 format: binary
 components:
-  parameters:
-    companyID:
-      name: companyID
-      in: query
-      required: true
-      description: The Zeal companyID identifying the employer account.
-      schema:
-        type: string
   schemas:
     EmployeeCheck:
       type: object
@@ -182,18 +174,6 @@ components:
           - pre-processed
           - processed
           - failed
-    Shift:
-      type: object
-      properties:
-        time:
-          type: string
-          format: date-time
-        hourly_wage:
-          type: number
-        hours:
-          type: number
-        wage_type:
-          type: string
     CreateEmployeeCheckRequest:
       type: object
       required:
@@ -214,6 +194,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Shift'
+    Shift:
+      type: object
+      properties:
+        time:
+          type: string
+          format: date-time
+        hourly_wage:
+          type: number
+        hours:
+          type: number
+        wage_type:
+          type: string
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http
