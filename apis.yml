@@ -546,6 +546,9 @@ apis:
   - type: APIReference
     url: https://docs.zeal.com/reference/webhook-events
 common:
+- type: CapabilityMap
+  url: capabilities/zeal-hq-capability-edges.yml
+  name: Zeal Business Capability Map
 - type: AgenticAccess
   url: agentic-access/zeal-hq-agentic-access.yml
 - type: DomainSecurity

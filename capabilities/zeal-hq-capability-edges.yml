@@ -1,0 +1,76 @@
+slug: zeal-hq
+provider: Zeal
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Employee Check
+  spec_file: zeal-hq-employee-check-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.85
+  evidence: POST /employeeCheck  createEmployeeCheck; GET /paystub  downloadPaystubPdf  Download a paystub
+    PDF
+  reason: Paychecks and paystubs are core payroll administration, explicitly listed under HR Operations
+    Management.
+- tag: Employees
+  spec_file: zeal-hq-employees-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.8
+  evidence: POST /employees  createEmployee; POST /taxes/employee/setup  setEmployeeTaxParameters
+  reason: Employee master records plus payroll tax parameters for a payroll platform — employee records
+    and payroll administration under HR Operations.
+- tag: Pay Schedules
+  spec_file: zeal-hq-pay-schedules-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.78
+  evidence: GET /reportingPeriods/upcoming  getUpcomingRegularPayroll  Get upcoming regular payroll; GET
+    /checkDate  getNextAvailableCheckDate
+  reason: Pay periods and check dates govern the payroll run calendar — payroll administration under HR
+    Operations.
+- tag: Companies
+  spec_file: zeal-hq-companies-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: POST /companies  createCompany  Create a company; GET /companies/onboard  getCompanyOnboardingLink;
+    POST /bankAccount  createCompanyBankAccount
+  reason: Onboarding of employer entities and their bank accounts into an embedded payroll platform —
+    payroll administration setup under HR Operations. Some ambiguity since it is employer-entity onboarding
+    rather than employee records.
+- tag: Contractor Payments
+  spec_file: zeal-hq-contractor-payments-api-openapi.yml
+  capability_id: BC-300.70
+  capability_id_l1: BC-300
+  capability_name: HR Operations Management
+  confidence: 0.75
+  evidence: POST /contractorPayments/disburse  triggerContractorDisbursement  Trigger a contractor payment
+    disbursement
+  reason: Creating and disbursing payments to 1099 contractors is payroll administration within HR Operations,
+    part of the vendor's payroll-as-a-service surface. Slight ambiguity versus Compensation & Benefits,
+    but payroll disbursement sits in HR Operations.
+- tag: Onboarding
+  spec_file: zeal-hq-onboarding-api-openapi.yml
+  capability_id: BC-300
+  capability_id_l1: BC-300
+  capability_name: Human Capital Management
+  confidence: 0.7
+  evidence: GET /employees/onboarding  generateEmployeeOnboardingLink; GET /contractors/onboard  getContractorOnboardingLink
+  reason: Generates hosted onboarding links for employees and contractors (and the employing company)
+    — worker onboarding within Human Capital Management. L2 left null because it straddles talent-acquisition
+    onboarding and HR operations record setup.
