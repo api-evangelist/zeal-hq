@@ -94,6 +94,19 @@ paths:
                 type: object
 components:
   schemas:
+    ReportRequest:
+      type: object
+      required:
+      - companyID
+      properties:
+        companyID:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
     ReportJob:
       type: object
       properties:
@@ -109,19 +122,6 @@ components:
         download_url:
           type: string
           format: uri
-    ReportRequest:
-      type: object
-      required:
-      - companyID
-      properties:
-        companyID:
-          type: string
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
   securitySchemes:
     bearerAuth:
       type: http

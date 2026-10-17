@@ -93,24 +93,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/OnboardLink'
 components:
-  parameters:
-    companyID:
-      name: companyID
-      in: query
-      required: true
-      description: The Zeal companyID identifying the employer account.
-      schema:
-        type: string
   schemas:
-    OnboardLink:
-      type: object
-      properties:
-        url:
-          type: string
-          format: uri
-        expiration:
-          type: string
-          format: date-time
     Contractor:
       type: object
       properties:
@@ -128,6 +111,15 @@ components:
           type: string
         onboarded:
           type: boolean
+    OnboardLink:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        expiration:
+          type: string
+          format: date-time
     CreateContractorRequest:
       type: object
       required:
@@ -149,6 +141,14 @@ components:
           type: string
         email:
           type: string
+  parameters:
+    companyID:
+      name: companyID
+      in: query
+      required: true
+      description: The Zeal companyID identifying the employer account.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

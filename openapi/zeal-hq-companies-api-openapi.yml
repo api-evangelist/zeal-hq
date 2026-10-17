@@ -105,18 +105,6 @@ paths:
                 $ref: '#/components/schemas/BankAccount'
 components:
   schemas:
-    CreateCompanyRequest:
-      type: object
-      required:
-      - business_name
-      - ein
-      properties:
-        business_name:
-          type: string
-        ein:
-          type: string
-        email:
-          type: string
     BankAccountRequest:
       type: object
       properties:
@@ -133,23 +121,6 @@ components:
           enum:
           - checking
           - savings
-    UpdateCompanyRequest:
-      type: object
-      properties:
-        companyID:
-          type: string
-        payroll_firstCheckDate:
-          type: string
-          format: date
-        payroll_schedule:
-          type: string
-          enum:
-          - weekly
-          - biweekly
-          - semimonthly
-          - monthly
-        payroll_firstPayPeriodID:
-          type: string
     Company:
       type: object
       properties:
@@ -176,6 +147,23 @@ components:
           type: string
         status:
           type: string
+    UpdateCompanyRequest:
+      type: object
+      properties:
+        companyID:
+          type: string
+        payroll_firstCheckDate:
+          type: string
+          format: date
+        payroll_schedule:
+          type: string
+          enum:
+          - weekly
+          - biweekly
+          - semimonthly
+          - monthly
+        payroll_firstPayPeriodID:
+          type: string
     OnboardLink:
       type: object
       properties:
@@ -185,6 +173,18 @@ components:
         expiration:
           type: string
           format: date-time
+    CreateCompanyRequest:
+      type: object
+      required:
+      - business_name
+      - ein
+      properties:
+        business_name:
+          type: string
+        ein:
+          type: string
+        email:
+          type: string
   parameters:
     companyID:
       name: companyID
