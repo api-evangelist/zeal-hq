@@ -1,4 +1,4 @@
-# Zeal (zeal-hq)
+# Zeal
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,265 +66,133 @@
 
 Zeal is an embedded, payroll-as-a-service platform. Its API lets software companies build their own payroll products - onboarding companies, employees, and 1099 contractors, running pay runs, disbursing pay, and handling tax calculation, filing, and compliance across all US jurisdictions - without becoming a payroll company themselves.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/zeal-hq/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/zeal-hq/refs/heads/main/apis.yml)
+**Areas:** Payroll · Embedded Finance · Fintech · Tax Compliance · Contractors · Human Resources
 
-## Tags
+## Zeal on APIs.io
 
-- Payroll
-- Embedded Finance
-- Fintech
-- Tax Compliance
-- Contractors
-- Human Resources
+Everything profiled for Zeal is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/zeal-hq/](https://apis.io/providers/zeal-hq/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (10)
 
-- **Created:** 2026-07-01
-- **Modified:** 2026-07-01
+- [Zeal Companies API](https://apis.io/apis/zeal-hq/zeal-hq-companies-api/) — The Companies API from Zeal — 3 operation(s) for companies.
+- [Zeal Contractor Payments API](https://apis.io/apis/zeal-hq/zeal-hq-contractor-payments-api/) — The Contractor Payments API from Zeal — 2 operation(s) for contractor payments.
+- [Zeal Contractors API](https://apis.io/apis/zeal-hq/zeal-hq-contractors-api/) — The Contractors API from Zeal — 2 operation(s) for contractors.
+- [Zeal Employee Check API](https://apis.io/apis/zeal-hq/zeal-hq-employee-check-api/) — The Employee Check API from Zeal — 3 operation(s) for employee check.
+- [Zeal Employees API](https://apis.io/apis/zeal-hq/zeal-hq-employees-api/) — The Employees API from Zeal — 4 operation(s) for employees.
+- [Zeal Funding API](https://apis.io/apis/zeal-hq/zeal-hq-funding-api/) — The Funding API from Zeal — 1 operation(s) for funding.
+- [Zeal Onboarding API](https://apis.io/apis/zeal-hq/zeal-hq-onboarding-api/) — The Onboarding API from Zeal — 3 operation(s) for onboarding.
+- [Zeal Pay Schedules API](https://apis.io/apis/zeal-hq/zeal-hq-pay-schedules-api/) — The Pay Schedules API from Zeal — 3 operation(s) for pay schedules.
+- [Zeal Reports API](https://apis.io/apis/zeal-hq/zeal-hq-reports-api/) — The Reports API from Zeal — 4 operation(s) for reports.
+- [Zeal Tax API](https://apis.io/apis/zeal-hq/zeal-hq-tax-api/) — The Tax API from Zeal — 4 operation(s) for tax.
 
-## APIs
+### Published properties
 
-### Zeal Companies API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create and manage employer companies on the platform - company profile, onboarding links and status, authorization documents, and company bank accounts with micro-deposit verification.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.zeal.com/reference/create-company](https://docs.zeal.com/reference/create-company)
-- **Base URL:** `https://api.zeal.com`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Zeal Hq Agentic Access](https://apis.io/agentic-access/zeal-hq/zeal-hq-agentic-access/)
 
-- Companies
-- Onboarding
-- Bank Accounts
+#### Collections (11)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.zeal.com/docs/what-is-zeal)
-- [API Reference](https://docs.zeal.com/reference/create-company)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Zeal API](https://apis.io/collections/zeal-hq/open-zeal-hq/)
+- [Zeal Companies API](https://apis.io/collections/zeal-hq/open-zeal-hq-companies-api/)
+- [Zeal Companies Contractor Payments API](https://apis.io/collections/zeal-hq/open-zeal-hq-contractor-payments-api/)
+- [Zeal Companies Contractors API](https://apis.io/collections/zeal-hq/open-zeal-hq-contractors-api/)
+- [Zeal Companies Employee Check API](https://apis.io/collections/zeal-hq/open-zeal-hq-employee-check-api/)
+- [Zeal Companies Employees API](https://apis.io/collections/zeal-hq/open-zeal-hq-employees-api/)
+- [Zeal Companies Funding API](https://apis.io/collections/zeal-hq/open-zeal-hq-funding-api/)
+- [Zeal Companies Onboarding API](https://apis.io/collections/zeal-hq/open-zeal-hq-onboarding-api/)
+- [Zeal Companies Pay Schedules API](https://apis.io/collections/zeal-hq/open-zeal-hq-pay-schedules-api/)
+- [Zeal Companies Reports API](https://apis.io/collections/zeal-hq/open-zeal-hq-reports-api/)
+- [Zeal Companies Tax API](https://apis.io/collections/zeal-hq/open-zeal-hq-tax-api/)
 
-### Zeal Employees API
+#### Security (2)
 
-Create, retrieve, and update W-2 employees, upload government IDs, check onboarding requirements, and manage employee tax parameters and withholding.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.zeal.com/reference/create-employee](https://docs.zeal.com/reference/create-employee)
-- **Base URL:** `https://api.zeal.com`
+- [Zeal Hq Authentication](https://apis.io/security/zeal-hq/zeal-hq-authentication/)
+- [Zeal Hq Domain Security](https://apis.io/security/zeal-hq/zeal-hq-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Employees
-- W-2
-- Workers
+Published plans, tiers and prices.
 
-#### Properties
+- [Zeal Hq Plans Pricing](https://apis.io/plans/zeal-hq/zeal-hq-plans-pricing/)
 
-- [Documentation](https://docs.zeal.com/docs/employee-onboarding-guide)
-- [API Reference](https://docs.zeal.com/reference/create-employee)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Zeal Contractors API
+Published request limits.
 
-Create, retrieve, and update 1099 contractors, upload government IDs, generate contractor onboarding links, and set onboarded status.
+- [Zeal Hq Rate Limits](https://apis.io/rate-limits/zeal-hq/zeal-hq-rate-limits/)
 
-- **Human URL:** [https://docs.zeal.com/reference/create-contractor](https://docs.zeal.com/reference/create-contractor)
-- **Base URL:** `https://api.zeal.com`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Contractors
-- 1099
-- Workers
+- [Zeal Hq Finops](https://apis.io/finops/zeal-hq/zeal-hq-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.zeal.com/docs/contractor-onboarding-guide)
-- [API Reference](https://docs.zeal.com/reference/create-contractor)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Zeal Employee Check (Payroll Run) API
-
-Create single and bulk employee checks (paychecks), attach and edit shifts, preview payroll, download paystub PDFs, and run pay runs that calculate gross-to-net and taxes.
-
-- **Human URL:** [https://docs.zeal.com/reference/create-employee-check](https://docs.zeal.com/reference/create-employee-check)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Payroll
-- Paychecks
-- Pay Runs
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/docs/regular-payroll)
-- [API Reference](https://docs.zeal.com/reference/create-employee-check)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Contractor Payments API
-
-Create, retrieve, update, and delete contractor payments and trigger their disbursement to worker bank accounts.
-
-- **Human URL:** [https://docs.zeal.com/reference/create-contractor-payment](https://docs.zeal.com/reference/create-contractor-payment)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Contractor Payments
-- Disbursement
-- 1099
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/docs/contractor-onboarding-guide)
-- [API Reference](https://docs.zeal.com/reference/create-contractor-payment)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Pay Schedules API
-
-Retrieve reporting periods, upcoming regular payroll, and the next available check and pay dates that drive the company's pay frequency and schedule.
-
-- **Human URL:** [https://docs.zeal.com/reference/get-all-reporting-periods](https://docs.zeal.com/reference/get-all-reporting-periods)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Pay Schedules
-- Reporting Periods
-- Check Dates
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/reference/pay-frequency-reporting-periods-and-check-dates)
-- [API Reference](https://docs.zeal.com/reference/get-all-reporting-periods)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Worker Onboarding API
-
-Generate hosted onboarding links for employees and contractors - account setup, bank account collection, ID upload, W-4, I-9, and custom paperwork - so workers can complete compliant onboarding themselves.
-
-- **Human URL:** [https://docs.zeal.com/reference/generate-employee-onboarding-link](https://docs.zeal.com/reference/generate-employee-onboarding-link)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Onboarding
-- Hosted Flows
-- Compliance Paperwork
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/docs/employee-onboarding-guide)
-- [API Reference](https://docs.zeal.com/reference/generate-employee-onboarding-link)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Tax and Compliance API
-
-Set and retrieve employee tax parameters and definitions, resolve taxable work locations, and look up minimum wage rules for automated, jurisdiction-aware payroll tax handling.
-
-- **Human URL:** [https://docs.zeal.com/reference/get-employee-tax-parameter-definitions](https://docs.zeal.com/reference/get-employee-tax-parameter-definitions)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Tax
-- Compliance
-- Minimum Wage
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/reference/introduction)
-- [API Reference](https://docs.zeal.com/reference/get-employee-tax-parameter-definitions)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Reports API
-
-Generate asynchronous payroll reports - payroll journal, cash requirements, labor allocation, payment/worker summaries, quarter- and year-to-date - then poll job status and download the finished report.
-
-- **Human URL:** [https://docs.zeal.com/reference/create-payroll-journal-report](https://docs.zeal.com/reference/create-payroll-journal-report)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Reports
-- Payroll Journal
-- Analytics
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/reference/introduction)
-- [API Reference](https://docs.zeal.com/reference/create-payroll-journal-report)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Funding and Journal API
-
-Inspect the reserve/provider balance funding payroll and build a payroll journal via the custom payroll journal report for accounting reconciliation.
-
-- **Human URL:** [https://docs.zeal.com/reference/get-provider-balance](https://docs.zeal.com/reference/get-provider-balance)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Funding
-- Journal
-- Accounting
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/reference/introduction)
-- [API Reference](https://docs.zeal.com/reference/get-provider-balance)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Zeal Webhooks and Events API
-
-Subscribe to platform events - company, employee, contractor, bank account, employee-check and employer-check processed events - delivered as webhooks so consumers can react to payroll lifecycle changes.
-
-- **Human URL:** [https://docs.zeal.com/reference/webhook-events](https://docs.zeal.com/reference/webhook-events)
-- **Base URL:** `https://api.zeal.com`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.zeal.com/reference/webhook-events)
-- [API Reference](https://docs.zeal.com/reference/webhook-events)
-- [OpenAPI](openapi/zeal-hq-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/zeal-hq.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/zeal-hq.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/zeal-holdings)
 - [Website](https://www.zeal.com)
 - [Documentation](https://docs.zeal.com)
-- [Plans](plans/zeal-hq-plans-pricing.yml)
-- [Rate Limits](rate-limits/zeal-hq-rate-limits.yml)
-- [Fin Ops](finops/zeal-hq-finops.yml)
+- [Blog](https://www.zeal.com/blog/rss.xml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 46.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Employment & Payroll
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/zeal-hq/](https://apis.io/providers/zeal-hq/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Zeal: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/zeal-hq/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
